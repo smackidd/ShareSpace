@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Saira+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container-home">
+        <!-- <img src="/assets/architectural-design-architecture-ceiling-chairs-380768.jpg" alt="Office Space image"> -->
+        <div id="cover-home">
+            <div id="navbar">
+                
+                <div id="title">
+                    <h1>ShareSpace</h1>
+                </div>
+                <ul>
+                    <li><a href="listings.html">Listings</a></li>
+                </ul>
+                <ul id="signIn">
+                    <li><a href="SignIn.html">Sign In</a></li>
+                </ul>
+                
+            </div>
+            <div id="signin-container">
+                <div id="signin">
+                    <h2>Sign In</h2>
+                    <div id="inputs-signin">
+                       
+                        <p>
+                            <i class="fa fa-envelope"></i>
+                            <input type="email" id="username" value="email" onfocus="value=''">
+                        </p>
+                        <p>
+                            <i class="fa fa-key"></i>
+                            <input type="password" id="password" value="password" onfocus="value=''">
+                        </p>
+                        <p></p><p></p>
+                        
+                    </div>
+                    <div id="buttons-signin">
+                        <button type="reset" id="btn-cancel-signin">Cancel</button>
+                        <button type="button" id="btn-submit-signin">Submit</button>
+                    </div>
+                    <p id="invalid-signin"></p>
+                    <div id="register-msg">
+                        <p>Not yet a member? <a href="Index.html">Register</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div id="copyright">
+                <p>Copyright &#169; 2020, ShareSpace - all rights reserved. </p>
+            </div>
+            <div id="social">
+                <div id="facebook">
+                    <a href="https://www.facebook.com">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </div>
+                <div id="twitter">
+                    <a href="https://www.twitter.com">
+                        <i class="fa fa-twitter-square"></i>
+                    </a>
+                </div>
+                <div id="instagram">
+                    <a href="https://www.instagram.com">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="signin.js"></script>
+</body>
+</html>
