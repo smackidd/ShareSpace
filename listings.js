@@ -191,7 +191,7 @@ function workspaceDisplay(){
                     '<div class="edit-buttons">' +
                         '<button type="reset" id="btn-cancel-workspace">Cancel</button>' +
                         '<button type="button" id="btn-submit-workspace">Submit</button>' +
-                    '</div>'
+                    '</div>' +
                     
                 '</div>   ' +
 
@@ -202,7 +202,7 @@ function workspaceDisplay(){
                     '<p><button type="button" id="btn-sure-remove-workspace">Remove</button></p>' +
                 '</div>' +
             '</div>';
-
+            
             // creates an array help match the workspace child index to the workspacesAll array index
             let temp = {propertyIndex: i, workIndex: j};
             workspaceIndex.push(temp);
@@ -253,6 +253,8 @@ function buttons(){
     const parking = document.querySelectorAll('#garage');
     const transit = document.querySelectorAll('#transit');
     const workspaceSureContainer = document.querySelectorAll('.are-you-sure-workspace');
+    const removeWorkspaceCancel = document.querySelectorAll('#btn-sure-cancel-workspace');
+    const removeWorkspaceRemove = document.querySelectorAll('#btn-sure-remove-workspace');
     //console.log(editFormContainer);
 
     // displays the edit property form
@@ -359,8 +361,32 @@ function buttons(){
     // displays the "are you sure" query to remove a workspace
     removeWorkspaceButton.forEach((element, index) => {
         element.addEventListener('click', ()=>{
-            console.log(element);
             workspaceSureContainer[index].style.display = "flex";
+        });
+    });
+
+    // once displayed, the cancel button will hide the "are you sure" query
+    removeWorkspaceCancel.forEach((element, index) => {
+        element.addEventListener('click', ()=>{
+            workspaceSureContainer[index].style.display = "none";
+        });
+    });
+
+    // the remove button will remove all workspaces in the property from workspacesAll
+    removeWorkspaceRemove.forEach((element, childIndex) => {
+        element.addEventListener('click', ()=>{
+            // the element child indexes are populated in the opposite order of the workspaceAll indexes
+            // so we need to recitfy the problem with the formula below.
+            index = (childIndex + 1 - workspaceIndex.length) * -1;
+            const propertyIndex = workspaceIndex[index].propertyIndex;
+            const workIndex = workspaceIndex[index].workIndex;
+            console.log("propertyIndex: ", propertyIndex);
+            console.log("workIndex: ", workIndex);
+            
+            workspacesAll[propertyIndex].splice(workIndex, 1);
+            propertySureContainer[childIndex].style.display = "none";
+            localStorage.setItem('workspaces', JSON.stringify(workspacesAll));
+            window.location.assign("listings.html");
         });
     });
 
