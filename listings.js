@@ -84,7 +84,7 @@ function workspaceDisplay(){
                             '<p>Owner: ' + workspacesAll[i][j].property[1].propertyOwner.firstName + " " + workspacesAll[i][j].property[1].propertyOwner.lastName + '</p>' +
                             '<p>Seats: ' + workspacesAll[i][j].numberOfSeats + '</p>' +
                             '<p>Available: ' + workspacesAll[i][j].dateAvailable + '</p>' +
-                            '<p>Price: ' + workspacesAll[i][j].price + '</p>' +
+                            '<p>Price: ' + workspacesAll[i][j].price + '/' + workspacesAll[i][j].leaseLength + '</p>' +
                             '<p>Smoking: ' + smoking + '</p>    ' +
                         '</div>' +
                     '</div>' +
@@ -178,9 +178,9 @@ function workspaceDisplay(){
                                     '<label for="lease">Lease Length</label>' +
                                     '<select id="lease" name="lease">' +
                                         '<option value="Default">--choose--</option>' +
-                                        '<option value="One day">One Day</option>' +
-                                        '<option value="One week">One Week</option>' +
-                                        '<option value="One month">One Month</option>' +
+                                        '<option value="day">One Day</option>' +
+                                        '<option value="week">One Week</option>' +
+                                        '<option value="month">One Month</option>' +
                                     '</select>' +
                                 '</p>' +
                                 '<p><input type="text" class="price" value="Price"' + " onfocus='value=" + '"$"' + "'" + '></p>' +
