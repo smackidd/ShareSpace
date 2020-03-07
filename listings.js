@@ -194,6 +194,13 @@ function workspaceDisplay(){
                     '</div>'
                     
                 '</div>   ' +
+
+                // hidden Are you Sure? Worksapce Remove Container
+                '<div class="are-you-sure-workspace">' +
+                    '<p>Are you sure?</p>' +
+                    '<p><button type="button" id="btn-sure-cancel-workspace">Cancel</button></p>' +
+                    '<p><button type="button" id="btn-sure-remove-workspace">Remove</button></p>' +
+                '</div>' +
             '</div>';
 
             // creates an array help match the workspace child index to the workspacesAll array index
@@ -223,6 +230,7 @@ function buttons(){
     const editPropertyButton = document.querySelectorAll('#btn-edit-property');
     const removePropertyButton = document.querySelectorAll('#btn-remove-property');
     const editWorkspaceButton = document.querySelectorAll('#btn-edit-workspace');
+    const removeWorkspaceButton = document.querySelectorAll('#btn-remove-workspace');
     const editFormContainer = document.querySelectorAll('.edit-form-container');
     const propertySureContainer = document.querySelectorAll('.are-you-sure-property');
     const editWorkspaceContainer = document.querySelectorAll('#office-container-listings');
@@ -244,6 +252,7 @@ function buttons(){
     const workspacePrice = document.querySelectorAll('.price');
     const parking = document.querySelectorAll('#garage');
     const transit = document.querySelectorAll('#transit');
+    const workspaceSureContainer = document.querySelectorAll('.are-you-sure-workspace');
     //console.log(editFormContainer);
 
     // displays the edit property form
@@ -346,6 +355,15 @@ function buttons(){
             window.location.assign("listings.html");
         });
     });
+
+    // displays the "are you sure" query to remove a workspace
+    removeWorkspaceButton.forEach((element, index) => {
+        element.addEventListener('click', ()=>{
+            console.log(element);
+            workspaceSureContainer[index].style.display = "flex";
+        });
+    });
+
 }
 
 buttons();

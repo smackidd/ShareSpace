@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Saira+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="container-update">
+        <!-- <img src="/assets/architectural-design-architecture-ceiling-chairs-380768.jpg" alt="Office Space image"> -->
+        <div id="cover-update">
+            <div id="navbar">
+                
+                <div id="title">
+                    <h1>ShareSpace</h1>
+                </div>
+                <ul id="links">
+                    <li><a href="listings.html">Listings</a></li>
+                </ul>
+                <ul id="signIn">
+                    <!-- <li><a href="SignIn.html">Sign In</a></li> -->
+                </ul>
+                
+            </div>
+            <div id="property-workspace">
+                <div id="property-submit">
+                    <div id="property-container">
+                        <div id="property">
+                            <h2>Add a Property</h2>
+                            <div id="inputs-property">
+                                <p>
+                                    <input type="text" id="pName" value="Property Name" onfocus="value=''">
+                                </p>
+                                <p>
+                                    <input type="text" id="pAddress" value="Address" onfocus="value=''">
+                                </p>
+                                <p>
+                                    <input type="text" id="pNeighborhood" value="Neighborhood" onfocus="value=''">
+                                </p>
+                                <p>
+                                    <input type="text" id="pSquareFoot" value="Square Footage" onfocus="value=''">
+                                </p>
+                                <div id="checkbox">
+                                    <div>
+                                        <input type="checkbox" id="garage">
+                                        <label for="garage">Parking</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="transit">
+                                        <label for="transit">Transit Access</label>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <div id="buttons-property">
+                                <button type="reset" id="btn-cancel-property">Cancel</button>
+                                <button type="button" id="btn-create-property">Create</button>
+                                
+                            </div>
+                            <p id="invalid-property"></p>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                <div id="office-container">
+                    <h2>Workspaces</h2>
+                    <div id="all-spaces"><br>
+                        <div class="new-space">
+                            <div class="photo">
+                                <i class="fa fa-camera"></i>
+                            </div>
+                            <div class="space-info">
+                                <div class="space-type">
+                                    <p><input type="text" id="type" value="Workspace type" onfocus="value=''"></p>
+                                    <p><input type="text" id="seats" value="# of seats" onfocus="value=''"></p>
+                                    <div><input type="checkbox" id="smoking"><label for="smoking">Smoking</label></div>
+                                </div>
+                                <div class="space-availability">
+                                    <p><input type="date" id="date"></p>
+                                    <p>
+                                        <label for="lease">Lease Length</label>
+                                        <select id="lease" name="lease">
+                                            <option value="Default">--choose--</option>
+                                            <option value="One day">One Day</option>
+                                            <option value="One week">One Week</option>
+                                            <option value="One month">One Month</option>
+                                        </select>
+                                    </p>
+                                    <p><input type="text" id="price" value="Price" onfocus="value='$'"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                        <div id="add-workspace">
+                            <div id="buttons-workspace">
+                                <button type="button" id="btn-addworkspace">Add Workspace</button>
+                                <button type="button" id="btn-deleteworkspace">Delete Workspace</button>
+                            </div>
+                            <div id="finalize-button">
+                                <button type="button" id="btn-finalize">Submit</button>
+                            </div>
+                        </div>
+                        <p id="invalid-workspace"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div id="copyright">
+                <p>Copyright &#169; 2020, ShareSpace - all rights reserved. </p>
+            </div>
+            <div id="social">
+                <div id="facebook">
+                    <a href="https://www.facebook.com">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </div>
+                <div id="twitter">
+                    <a href="https://www.twitter.com">
+                        <i class="fa fa-twitter-square"></i>
+                    </a>
+                </div>
+                <div id="instagram">
+                    <a href="https://www.instagram.com">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="update.js"></script> -->
+    <script src="update.js"></script>
+</body>
+</html>
