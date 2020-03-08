@@ -805,6 +805,28 @@ li a {
         -3px -3px 5px #f4eacb;
 }
 
+#owner-info-listings{
+    display: none;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+}
+
+#owner-info-listings button{
+    position: relative;
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #dc3c54;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #E2D9BC;
+    box-shadow:  3px 3px 5px #d0c8ad, 
+        -3px -3px 5px #f4eacb;
+}
+
 /* Update CSS */
 
 #container-update{

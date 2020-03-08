@@ -4,6 +4,9 @@
 
 
 */
+// var fs = require('fs');
+// console.log(fs);
+
 let property = [0];
 let propertyTemp = {};
 let workspaceTemp = {};
@@ -122,6 +125,7 @@ let buttonPush = ()=> {
         const leaseLength = document.getElementById('lease').value;
         const price = document.getElementById('price').value;
         const propertyInfo = property;
+        const isAvailable = true;
         // workspaceID equals workspace counter
         const workspaceID = workspaces[0];
         // ID counter
@@ -138,6 +142,7 @@ let buttonPush = ()=> {
                     leaseLength: leaseLength,
                     price: price,
                     property: propertyInfo,
+                    Available: isAvailable,
                     WorkSpaceID: workspaceID,
                 }
                 
@@ -166,6 +171,7 @@ let buttonPush = ()=> {
         console.log("workspaces: ", workspaces);
         console.log("workspacesAll: ", workspacesAll);
         workspacesAll.push(workspaces);
+        //fs.writeFileSync("workspaceAll.json", JSON.stringify(workspacesAll));
         localStorage.setItem("workspaces", JSON.stringify(workspacesAll));
         window.location.assign("listings.html");
     });
