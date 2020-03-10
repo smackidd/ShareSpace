@@ -4,8 +4,8 @@
     - pass values in to the forms for Edit Property and Edit Workspace
   
     - Implement ratings display
-    - Implement Coworker renting functionality -> update Account page
     
+     
     - Style Search/Filter Bar
     - Implement Search/Filter functionality, including Owner-only button
     - display photos
@@ -15,7 +15,7 @@ var currentUser = {};
 var rentedWorkspaces = [];
 let workspacesAll;
 if (localStorage.getItem('rentedSpaces')) {
-    rentedWorkspace = JSON.parse(localStorage.getItem('rentedSpaces'));
+    rentedWorkspaces = JSON.parse(localStorage.getItem('rentedSpaces'));
 }
 if (localStorage.getItem('workspaces')){
     workspacesAll = JSON.parse(localStorage.getItem('workspaces'));
