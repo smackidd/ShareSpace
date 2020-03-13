@@ -8,6 +8,12 @@ The neumorphism code was used to create the soft UI style */
     margin: 0;    
 }
 
+@media screen and (max-width: 1180px){
+    #search-container{
+        flex-direction: column;
+    }
+}
+
 input:focus {
     outline: none;
 }
@@ -367,11 +373,97 @@ li a {
     display: flex;
     position: relative;
     top: 20px;
-    height: 10vh;
+    min-height: 10vh;
     width: 90%;
     margin: auto;
-    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #771C30;
 }
+
+#search-container{
+    display: flex;
+    position: relative;
+    margin: auto;
+    width: 100%;
+    min-height: 9vh;
+    border-radius: 14px;
+    color: #E2D9BC;
+    background-color: #771C30;
+    box-shadow:  10px 10px 12px #6f1a2d, 
+             -10px -10px 12px #7f1e33;
+}
+
+#property-search{
+    display: flex;
+    
+    flex: 1;
+    position: relative;
+    
+}
+
+
+
+.search-bar-filter{
+    display: flex;
+    flex-direction: column;
+}
+
+.search-bar-filter div div label{
+    margin-right: 6px;
+}
+
+.search-bar-filter div{
+    display: flex;
+    justify-content: space-between;
+    margin: 2px;
+    margin-left: 10px;
+}
+
+.search-bar-sort-btns{
+    transform: translateY(-10px);
+}
+
+.search-bar-sort-btns div button{
+    font-size: 0.7em;
+    margin: 5px;
+    padding: 3px;
+    border: none;
+}
+
+#workspace-search{
+    flex: 1;
+    position: relative;
+    
+}
+
+#radio-search{
+    flex: 1;
+    position: relative;
+    
+}
+
+
+
+.property-filter{
+    display: flex;
+
+}
+
+.search-bar-sort-btns{
+    display: flex;
+    
+}
+
+.search-bar-sort-btns div{
+    
+    position: relative;
+    width: 100%;
+    margin: auto;
+    top: 10px;
+}
+
+
 
 #workspaces-container {
     display: flex;

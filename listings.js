@@ -9,8 +9,8 @@
     - Style Search/Filter Bar
     - Implement Search/Filter functionality, including Owner-only button
     - display photos
-
 */
+
 var currentUser = {};
 var rentedWorkspaces = [];
 let workspacesAll;
