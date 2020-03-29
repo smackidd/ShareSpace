@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Saira+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="container-listings">
+        <!-- <img src="/assets/architectural-design-architecture-ceiling-chairs-380768.jpg" alt="Office Space image"> -->
+        <div id="cover-listings">
+            <div id="navbar">
+                
+                <div id="title">
+                    <h1>ShareSpace</h1>
+                </div>
+                <ul id="links">
+                    <li><a href="listings.html">Listings</a></li>
+                </ul>
+                <ul id="signIn">
+                    <!-- <li><a href="SignIn.html">Sign In</a></li> -->
+                </ul>
+                
+            </div>
+            <div id="search-bar">
+                <div id="search-container">
+                    <div id="property-search">
+                        <div class="search-bar-filter">
+                            <div>
+                                <div>
+                                    <label for="property-name-filter">Property Name</label>
+                                    <select id="property-name-filter" name="property-name-filter">
+                                        <option value="Default">--choose--</option>
+                                        <option value="The Bow">The Bow</option>
+                                    </select>
+                                </div>
+                                <div class="search-bar-sort-btns">
+                                    <div class="ascending"><button type="button" class="btn-ascending">ASC</button></div>
+                                    <div class="descending"><button type="button" class="btn-descending">DESC</button></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="property-address-filter">Address</label>
+                                    <select id="property-address-filter" name="property-address-filter">
+                                        <option value="Default">--choose--</option>
+                                        <option value="1800, 500 1st St SW">1800, 500 1st St SW</option>
+                                    </select>
+                                </div>
+                                <div class="search-bar-sort-btns">
+                                    <div class="ascending"><button type="button" class="btn-ascending">ASC</button></div>
+                                    <div class="descending"><button type="button" class="btn-descending">DESC</button></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="property-neighborhood-filter">Neighborhood</label>
+                                    <select id="property-neighborhood-filter" name="property-neighborhood-filter">
+                                        <option value="Default">--choose--</option>
+                                        <option value="Beltline">Beltline</option>
+                                    </select>
+                                </div>
+                                <div class="search-bar-sort-btns">
+                                    <div class="ascending"><button type="button" class="btn-ascending">ASC</button></div>
+                                    <div class="descending"><button type="button" class="btn-descending">DESC</button></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="property-sqft-filter">SquareFT</label>
+                                    <select id="property-sqft-filter" name="property-sqft-filter">
+                                        <option value="Default">--choose--</option>
+                                        <option value="2400">2400 SqFT</option>
+                                    </select>
+                                </div>
+                                <div class="search-bar-sort-btns">
+                                    <div class="ascending"><button type="button" class="btn-ascending">ASC</button></div>
+                                    <div class="descending"><button type="button" class="btn-descending">DESC</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div id="workspace-search">
+                        <div class="search-bar-filter">
+                            <div>
+                                <div>
+                                    <label for="workspace-type-filter">Workspace Type</label>
+                                    <select id="workspace-type-filter" name="workspace-type-filter">
+                                        <option value="Default">--choose--</option>
+                                        <option value="Conference Room">Conference Room</option>
+                                    </select>
+                                </div>
+                                <div class="search-bar-sort-btns">
+                                    <div class="ascending"><button type="button" class="btn-ascending">ASC</button></div>
+                                    <div class="descending"><button type="button" class="btn-descending">DESC</button></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="workspace-date-available-filter">Date Available</label>
+                                    <input type="date" id="workspace-date-available-filter">
+                                </div>
+                                <div class="search-bar-sort-btns">
+                                    <div class="ascending"><button type="button" class="btn-ascending">ASC</button></div>
+                                    <div class="descending"><button type="button" class="btn-descending">DESC</button></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="workspace-price-filter">Price</label>
+                                    <select id="workspace-price-filter" name="workspace-price-filter">
+                                        <option value="Default">--choose--</option>
+                                        <option value="500">$0 - $500</option>
+                                        <option value="501-1000">$501 - $1000</option>
+                                        <option value="1001-2000">$1001 - $2000</option>
+                                        <option value="2001">$2001+</option>
+                                    </select>
+                                </div>
+                                <div class="search-bar-sort-btns">
+                                    <div class="ascending"><button type="button" class="btn-ascending">ASC</button></div>
+                                    <div class="descending"><button type="button" class="btn-descending">DESC</button></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="workspace-lease-filter">Lease Length</label>
+                                    <select id="workspace-lease-filter" name="workspace-lease-filter">
+                                        <option value="Default">--choose--</option>
+                                        <option value="day">One Day</option>
+                                        <option value="week">One Week</option>
+                                        <option value="month">One Month</option>
+                                    </select>
+                                </div>
+                                <div class="search-bar-sort-btns">
+                                    <div class="ascending"><button type="button" class="btn-ascending">ASC</button></div>
+                                    <div class="descending"><button type="button" class="btn-descending">DESC</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="radio-search">
+                        <div class="search-bar-filter">
+                            <div>
+                                <div>
+                                    <label for="workspace-seats-filter"># of Seats</label>
+                                    <select id="workspace-seats-filter" name="workspace-seats-filter">
+                                        <option value="Default">--choose--</option>
+                                        <option value="1">1</option>
+                                        <option value="2-20">2-20</option>
+                                        <option value="21-250">21-250</option>
+                                        <option value="251">251+</option>
+                                    </select>
+                                </div>
+                                <div class="search-bar-sort-btns">
+                                    <div class="ascending"><button type="button" class="btn-ascending">ASC</button></div>
+                                    <div class="descending"><button type="button" class="btn-descending">DESC</button></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div>
+                                    <input type="checkbox" id="garage">
+                                    <label for="garage">Parking</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="transit">
+                                    <label for="transit">Transit Access</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="smoking">
+                                    <label for="smoking">Smoking</label>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>    
+                </div>
+
+            </div>
+            <div id="listings-listings">
+                <div id="workspaces-container">
+                    <p id="put-workspaces-here"></p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div id="copyright">
+                <p>Copyright &#169; 2020, ShareSpace - all rights reserved. </p>
+            </div>
+            <div id="social">
+                <div id="facebook">
+                    <a href="https://www.facebook.com">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </div>
+                <div id="twitter">
+                    <a href="https://www.twitter.com">
+                        <i class="fa fa-twitter-square"></i>
+                    </a>
+                </div>
+                <div id="instagram">
+                    <a href="https://www.instagram.com">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/scripts/listings.js"></script>
+</body>
+</html>

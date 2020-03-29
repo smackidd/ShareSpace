@@ -1,0 +1,1440 @@
+/*NOTE: all border-box attributes have been adapted from code from https://neumorphism.io/
+The neumorphism code was used to create the soft UI style */
+
+*{
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;    
+}
+
+@media screen and (max-width: 1180px){
+    #search-container{
+        flex-direction: column;
+    }
+}
+
+input:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Cover CSS */
+#container-home{
+    height: 100vh;
+    overflow-x: hidden;
+    background-image: url("/assets/architectural-design-architecture-ceiling-chairs-380768.jpg");
+    background-position: center;
+    background-size: cover;
+    z-index: -5;
+}
+
+
+#cover-home{
+    
+    height: 100vh;
+    background-image: linear-gradient(325deg, rgba(226, 217, 188, 0.6), rgba(226, 217, 188, 0.25));
+    z-index: -2;
+}
+
+/* Navbar CSS */
+#navbar {
+    display: flex;
+    justify-content: space-around;
+    /*position: relative;*/
+    top: 0;
+    
+    width: 100%;
+    height: 60px;
+    background-color: #C1354A;
+    color: #E2D9BC;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+#title{
+    flex: 1;
+    margin-left: 20px;
+}
+
+ul{
+    display: flex;
+    position: relative;
+    
+    list-style-type: none;
+    
+}
+
+li{
+    text-align: right;
+    padding-right: 20px;
+}
+
+
+li a {
+    text-decoration: none;
+    color: #E2D9BC;
+}
+
+#welcome {
+    font-size: 1.2em;
+}
+
+
+/* Register CSS */
+#register-container{
+    position: relative;
+    top: 100px;
+    width: 300px;
+    height: 60vh;
+    margin: auto;
+    border-radius: 20px;
+    background-color: #C1354A;
+    box-shadow: 3px 3px 15px #661829;
+}
+
+#register{
+    position: relative;
+    width: 90%;
+    height: 55vh;
+    top: 15px;
+    margin: auto;
+    color: #E2D9BC;
+    border-radius: 20px;
+    background-color: #C1354A;
+    box-shadow:  8px 8px 20px #a62e40, 
+             -8px -8px 20px #dc3c54;
+}
+
+#register h2{
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: #E2D9BC;
+    text-align: center;
+    top: 10px;
+}
+
+#inputs-home{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    top: 20px;
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    
+}
+
+#inputs-home p{
+    position: relative;
+    margin: auto;
+}
+
+#inputs-home p i{
+    font-size: 1.5em;
+    
+    margin: 5px;
+}
+
+#inputs-home p input{
+    height: 30px;
+    padding: 10px;
+    font-style: italic;
+    color: #E2D9BC;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 5px 5px 15px #a62e40, 
+                inset -5px -5px 15px #dc3c54;
+    background-color: #C1354A;
+}
+
+#radio {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    margin: auto;
+    top: 5px;
+    padding: 10px;
+    align-items: center;
+}
+
+
+#radio label{
+   
+    
+    margin: 5px;
+    cursor: pointer;
+}
+
+
+
+
+#buttons-home{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 30px;
+    width: 90%;
+    margin: auto;
+    height: 100px;
+}
+
+#buttons-home button{
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    color: #E2D9BC;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #C1354A;
+    box-shadow:  5px 5px 12px #a62e40, 
+                -5px -5px 12px #dc3c54;
+    
+    animation-duration: .5s ease-in-out;
+}
+
+#buttons-home button:active {
+    box-shadow:  inset 5px 5px 12px #a62e40, 
+    inset -5px -5px 12px #dc3c54;
+}
+
+#invalid-home{
+    display: block;
+    position: relative;
+    top: -20px;
+    padding-left: 20px;
+    color: #f7f7f7;
+}
+
+#signIn-msg{
+    position: relative;
+    width: 90%;
+    margin: auto;
+}
+
+#signIn-msg p{
+    font-style: italic;
+}
+
+#signIn-msg p a{
+    padding: 10px;
+    text-decoration: none;
+    color: #f7f7f7;
+}
+
+/* Sign In CSS */
+#signin-container{
+    position: relative;
+    top: 100px;
+    width: 300px;
+    height: 60vh;
+    margin: auto;
+    border-radius: 20px;
+    background-color: #C1354A;
+    box-shadow: 3px 3px 15px #661829;
+}
+
+#signin{
+    position: relative;
+    width: 90%;
+    height: 55vh;
+    top: 15px;
+    margin: auto;
+    color: #E2D9BC;
+    border-radius: 20px;
+    background-color: #C1354A;
+    box-shadow:  8px 8px 20px #a62e40, 
+             -8px -8px 20px #dc3c54;
+}
+
+#signin h2{
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: #E2D9BC;
+    text-align: center;
+    top: 10px;
+}
+
+#inputs-signin{
+    display: flex;
+    flex-direction: column;
+    
+    position: relative;
+    top: 20px;
+    
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    
+}
+
+#inputs-signin p{
+    position: relative;
+    margin: auto;
+}
+
+#inputs-signin p i{
+    font-size: 1.5em;
+    
+    margin: 5px;
+}
+
+#inputs-signin p input{
+    height: 30px;
+    padding: 10px;
+    font-style: italic;
+    color: #E2D9BC;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 5px 5px 15px #a62e40, 
+                inset -5px -5px 15px #dc3c54;
+    background-color: #C1354A;
+}
+
+
+#buttons-signin{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 30px;
+    width: 90%;
+    margin: auto;
+    height: 100px;
+   
+}
+
+#buttons-signin button{
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    color: #E2D9BC;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #C1354A;
+    box-shadow:  5px 5px 12px #a62e40, 
+                -5px -5px 12px #dc3c54;
+}
+
+#buttons-signin button:active {
+    box-shadow:  inset 5px 5px 12px #a62e40, 
+    inset -5px -5px 12px #dc3c54;
+}
+
+#invalid-signin{
+    display: block;
+    position: relative;
+    top: -20px;
+    padding-left: 20px;
+    color: #f7f7f7;
+}
+
+#register-msg{
+    position: relative;
+    width: 90%;
+    margin: auto;
+}
+
+#register-msg p{
+    font-style: italic;
+}
+
+#register-msg p a{
+    padding: 5px;
+    text-decoration: none;
+    color: #f7f7f7;
+}
+
+/* Listings CSS */
+#container-listings{
+    height: 100vh;
+    overflow-x: hidden;
+    background-image: url("/assets/gray-high-rise-buildings-936722.jpg");
+    background-position: center;
+    background-size: cover;
+    z-index: -5;
+}
+
+#cover-listings{
+    min-height: 100vh;
+    background-image: linear-gradient(325deg, rgba(226, 217, 188, 0.6), rgba(226, 217, 188, 0.25));
+    z-index: -2;
+    padding-bottom: 50px;
+}
+
+#search-bar{
+    display: flex;
+    position: relative;
+    top: 20px;
+    min-height: 10vh;
+    width: 90%;
+    margin: auto;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #771C30;
+}
+
+#search-container{
+    display: flex;
+    position: relative;
+    margin: auto;
+    width: 100%;
+    min-height: 9vh;
+    border-radius: 14px;
+    color: #E2D9BC;
+    background-color: #771C30;
+    box-shadow:  10px 10px 12px #6f1a2d, 
+             -10px -10px 12px #7f1e33;
+}
+
+#property-search{
+    display: flex;
+    
+    flex: 1;
+    position: relative;
+    
+}
+
+
+
+.search-bar-filter{
+    display: flex;
+    flex-direction: column;
+}
+
+.search-bar-filter div div label{
+    margin-right: 6px;
+}
+
+.search-bar-filter div{
+    display: flex;
+    justify-content: space-between;
+    margin: 2px;
+    margin-left: 10px;
+}
+
+.search-bar-sort-btns{
+    transform: translateY(-10px);
+}
+
+.search-bar-sort-btns div button{
+    font-size: 0.7em;
+    margin: 5px;
+    padding: 3px;
+    border: none;
+}
+
+#workspace-search{
+    flex: 1;
+    position: relative;
+    
+}
+
+#radio-search{
+    flex: 1;
+    position: relative;
+    
+}
+
+
+
+.property-filter{
+    display: flex;
+
+}
+
+.search-bar-sort-btns{
+    display: flex;
+    
+}
+
+.search-bar-sort-btns div{
+    
+    position: relative;
+    width: 100%;
+    margin: auto;
+    top: 10px;
+}
+
+
+
+#workspaces-container {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    top: 40px;
+    min-height: 300px;
+    width: 90%;
+    padding-bottom: 20px;
+    margin: auto;
+    border-radius: 15px;
+    background-color: #E2D9BC;
+}
+
+#workspace-box {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 200px;
+    width: 97%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    color: #dc3c54;
+    background-color: #E2D9BC;
+    box-shadow:  8px 8px 16px #cbc3a9, 
+             -8px -8px 16px #f9efcf;
+}
+
+#listings-workspace{
+    display: flex;
+    flex: 3;
+    color: #dc3c54;
+
+}
+
+#photo-listings {
+    flex: 1;
+    margin: 7px;
+    position: relative;
+    border-radius: 15px;
+    background-color: #BEA951;
+    box-shadow: inset 7px 7px 15px #ab9849, 
+                inset -7px -7px 15px #d1ba59;
+}
+
+
+
+#photo-listings i{
+    position: relative;
+    padding: 50px;
+    width: 100%;
+    
+    text-align: center;
+    font-size: 1.5em;
+    
+}
+
+#property-info{
+    flex: 2;
+    position: relative;
+    margin: 7px;
+}
+
+#property-info h2{
+    text-align: center;
+    margin: 4px;
+}
+
+#property-address-listings{
+    display: flex;
+    flex-direction: column;
+}
+
+#property-address-listings p{
+    position: relative;
+    color: #333;
+    margin: 3px;
+}
+
+#workspace-container-listings{
+    flex: 2;
+    position: relative;
+    margin-top: 7px;
+    margin-right: 7px;
+    border-radius: 15px;
+    background-color: #dc3c54;
+    
+}
+
+#workspace-info{
+    position: relative;
+    height: 115px;
+    top: 12px;
+    width: 92%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #dc3c54;
+    box-shadow:  6px 6px 10px #c6364c, 
+             -6px -6px 10px #f2425c;
+}
+
+#workspace-info p{
+    margin: 3px;
+    font-size: .95em;
+    color: #E2D9BC;
+}
+
+#property-info div{
+    display: flex;
+    font-size: .9em;
+}
+
+#listings-buttons{
+    flex: 1;
+    display: flex;
+    
+}
+
+#listings-buttons div{
+    flex: 1;
+}
+
+#ratings-listings{
+    
+    display: flex;
+    font-size: 1.2em;
+    letter-spacing: 5px;
+    padding: 20px;
+    color: #dc3c54;
+}
+
+#ratings-listings p:nth-child(6){
+    font-size: .7em;
+    letter-spacing: 2px;
+    margin: 3px;
+}
+
+.listings-buttons-container{
+    position: relative;
+    
+    height: 40px;
+    width: 90%;
+    top: 10px;
+    bottom: 10px;
+    margin: auto;
+    font-size: .8em;
+    background-color: #E2D9BC;
+}
+
+.listings-buttons-container button{
+    position: relative;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    height: 40px;
+    top: 5px;
+    margin: auto;
+    color: #dc3c54;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #E2D9BC;
+    box-shadow:  5px 5px 10px #d0c8ad, 
+        -5px -5px 10px #f4eacb;
+}
+
+.edit-form-container{
+    display: none;
+    position: relative;
+    min-height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background-color: #E2D9BC;
+}
+
+.edit-form p{
+    margin: 5px;
+}
+
+.edit-form p input{
+    height: 20px;
+    padding: 10px;
+    font-style: italic;
+    color: #dc3c54;
+    border: none;
+    border-radius: 5px;
+    background-color: #E2D9BC;
+    box-shadow:  inset 5px 5px 10px #d0c8ad, 
+        inset -5px -5px 10px #f4eacb;
+}
+
+.edit-buttons button{
+    height: 30px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #dc3c54;
+    border: none;
+    background-color: #E2D9BC;
+    box-shadow:  3px 3px 5px #d0c8ad, 
+        -3px -3px 5px #f4eacb;
+}
+
+.are-you-sure-property {
+    display: none;
+    position: relative;
+    vertical-align: center;
+    min-height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.are-you-sure-property p:nth-child(1){
+    position: relative;
+    margin: 15px;
+}
+
+.are-you-sure-property p button{
+    height: 30px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #dc3c54;
+    border: none;
+    background-color: #E2D9BC;
+    box-shadow:  3px 3px 5px #d0c8ad, 
+        -3px -3px 5px #f4eacb;
+}
+       
+        /* Hidden Edit Workspace Container */
+#office-container-listings{
+    display: none;
+    flex-direction: column;
+    width: 60%;
+    top: 30px;
+    margin: 10px;
+    
+    border-radius: 15px;
+    color: #dc3c54;
+    background-color: #E2D9BC;
+}
+
+#all-spaces{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#office-container h2{
+    margin: 3px;
+    text-align: center;
+}
+
+.new-space-listings{
+    display: flex;
+    position: relative;
+    width: 95%;
+    height: 20vh;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #E2D9BC;
+}
+
+.photo-listings {
+    flex: 1;
+    margin: 7px;
+    position: relative;
+    border-radius: 15px;
+    background-color: #BEA951;
+    box-shadow: inset 5px 5px 15px #ab9849, 
+                inset -5px -5px 15px #d1ba59;
+}
+
+
+
+.photo i{
+    position: absolute;
+    text-align: center;
+    font-size: 1.5em;
+    
+}
+.space-info {
+    display: flex;
+    flex: 3;
+    margin: 7px;
+    position: relative;
+   
+}
+
+.space-info div{
+    flex: 1;
+    margin-left: 5px;
+    
+}
+
+.space-type p {
+    margin-bottom: 10px;
+}
+
+
+
+.space-type p input{
+    height: 30px;
+    padding: 10px;
+    font-style: italic;
+    color: #771C30;
+    border: none;
+    border-radius: 5px;
+    background-color: #E2D9BC;
+    box-shadow: inset 5px 5px 15px #ab9849, 
+                inset -5px -5px 15px #d1ba59;
+}
+
+#smoking {
+    margin: 5px;
+}
+
+#space-type div{
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.space-availability p{
+    margin-bottom: 10px;
+}
+
+.space-availability p input{
+    height: 30px;
+    padding: 10px;
+    font-style: italic;
+    color: #771C30;
+    border: none;
+    border-radius: 5px;
+    background-color: #E2D9BC;
+    box-shadow: inset 5px 5px 15px #ab9849, 
+                inset -5px -5px 15px #d1ba59;
+}
+
+#add-workspace{
+    display: flex;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    height: 40px;
+}
+
+#buttons-workspace{
+    display: flex;
+    flex: 2;
+    height: 40px;
+}
+
+#invalid-workspace{
+    color: #f7f7f7;
+    margin: 5px;
+}
+
+#buttons-workspace button{
+    flex: 1;
+    height: 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #771C30;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #E2D9BC;
+    box-shadow: 5px 5px 15px #ab9849, 
+                -5px -5px 15px #d1ba59;
+}
+
+#finalize-button{
+    flex: 1;
+    height: 50px;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: #771C30;
+}
+
+#finalize-button button{
+    position: relative;
+    width: 90%;
+    height: 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #BEA951;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #771C30;
+    box-shadow: 5px 5px 10px #5e1626, 
+    -5px -5px 10px #90223a
+}
+
+/* Hidden Are you sure workspace */
+
+.are-you-sure-workspace {
+    display: none;
+    position: relative;
+    vertical-align: center;
+    min-height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.are-you-sure-workspace p:nth-child(1){
+    position: relative;
+    margin: 15px;
+}
+
+.are-you-sure-workspace p button{
+    height: 30px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #dc3c54;
+    border: none;
+    background-color: #E2D9BC;
+    box-shadow:  3px 3px 5px #d0c8ad, 
+        -3px -3px 5px #f4eacb;
+}
+
+#owner-info-listings{
+    display: none;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+}
+
+#owner-info-listings button{
+    position: relative;
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #dc3c54;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #E2D9BC;
+    box-shadow:  3px 3px 5px #d0c8ad, 
+        -3px -3px 5px #f4eacb;
+}
+
+/* Update CSS */
+
+#container-update{
+    
+    min-height: 100vh;
+    
+    background-image: url("/assets/gray-high-rise-buildings-936722.jpg");
+    background-position: center;
+    background-size: cover;
+    z-index: -5;
+}
+
+
+#cover-update{
+    min-height: 100vh;
+    background-image: linear-gradient(325deg, rgba(226, 217, 188, 0.6), rgba(226, 217, 188, 0.25));
+    z-index: -2;
+}
+
+#property-workspace{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#property-container{
+    position: relative;
+    top: 30px;
+    left: 30px;
+    width: 300px;
+    height: 60vh;
+    
+    border-radius: 20px;
+    background-color: #C1354A;
+    box-shadow: 3px 3px 15px #661829;
+}
+
+#property{
+    position: relative;
+    width: 90%;
+    height: 55vh;
+    top: 15px;
+    margin: auto;
+    color: #E2D9BC;
+    border-radius: 20px;
+    background-color: #C1354A;
+    box-shadow:  8px 8px 20px #a62e40, 
+             -8px -8px 20px #dc3c54;
+}
+
+#property h2{
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: #E2D9BC;
+    text-align: center;
+    top: 10px;
+}
+
+#inputs-property{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    top: 20px;
+    width: 90%;
+    height: 250px;
+    margin: auto;
+    
+}
+
+#inputs-property p{
+    position: relative;
+    margin: auto;
+}
+
+#inputs-property p i{
+    font-size: 1.5em;
+    
+    margin: 5px;
+}
+
+#inputs-property p input{
+    height: 30px;
+    padding: 10px;
+    font-style: italic;
+    color: #E2D9BC;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 5px 5px 15px #a62e40, 
+                inset -5px -5px 15px #dc3c54;
+    background-color: #C1354A;
+}
+
+#checkbox {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    
+    top: 5px;
+    padding: 10px;
+    align-items: left;
+}
+
+#checkbox div{
+    position: relative;
+    margin: 0;
+}
+
+#checkbox label{
+   
+    
+    margin: 5px;
+    cursor: pointer;
+}
+
+#buttons-property{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 30px;
+    width: 90%;
+    margin: auto;
+    height: 100px;
+}
+
+#buttons-property button{
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    color: #E2D9BC;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #C1354A;
+    box-shadow:  5px 5px 12px #a62e40, 
+                -5px -5px 12px #dc3c54;
+    
+    animation-duration: .5s ease-in-out;
+}
+
+#buttons-property button:active {
+    box-shadow:  inset 5px 5px 12px #a62e40, 
+    inset -5px -5px 12px #dc3c54;
+}
+
+#invalid-property{
+    display: block;
+    position: relative;
+    top: -20px;
+    padding-left: 20px;
+    color: #f7f7f7;
+}
+
+#office-container{
+    display: none;
+    flex-direction: column;
+    width: 60%;
+    top: 30px;
+    margin: 40px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    color: #771C30;
+    background-color: #BEA951;
+}
+
+#all-spaces{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#office-container h2{
+    margin: 3px;
+    text-align: center;
+}
+
+.new-space{
+    display: flex;
+    position: relative;
+    width: 95%;
+    height: 20vh;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #BEA951;
+    box-shadow: 10px 10px 20px #ab9849, 
+                -10px -10px 20px #d1ba59;
+}
+
+.photo {
+    flex: 1;
+    margin: 7px;
+    position: relative;
+    border-radius: 15px;
+    background-color: #BEA951;
+    box-shadow: inset 5px 5px 15px #ab9849, 
+                inset -5px -5px 15px #d1ba59;
+}
+
+
+
+.photo i{
+    position: absolute;
+    text-align: center;
+    font-size: 1.5em;
+    
+}
+.space-info {
+    display: flex;
+    flex: 3;
+    margin: 7px;
+    position: relative;
+   
+}
+
+.space-info div{
+    flex: 1;
+    margin-left: 5px;
+    
+}
+
+.space-type p {
+    margin-bottom: 10px;
+}
+
+
+
+.space-type p input{
+    height: 30px;
+    padding: 10px;
+    font-style: italic;
+    color: #771C30;
+    border: none;
+    border-radius: 5px;
+    background-color: #BEA951;
+    box-shadow: inset 5px 5px 15px #ab9849, 
+                inset -5px -5px 15px #d1ba59;
+}
+
+#smoking {
+    margin: 5px;
+}
+
+#space-type div{
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.space-availability p{
+    margin-bottom: 10px;
+}
+
+.space-availability p input{
+    height: 30px;
+    padding: 10px;
+    font-style: italic;
+    color: #771C30;
+    border: none;
+    border-radius: 5px;
+    background-color: #BEA951;
+    box-shadow: inset 5px 5px 15px #ab9849, 
+                inset -5px -5px 15px #d1ba59;
+}
+
+#add-workspace{
+    display: flex;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    height: 40px;
+}
+
+#buttons-workspace{
+    display: flex;
+    flex: 2;
+    height: 40px;
+}
+
+#invalid-workspace{
+    color: #f7f7f7;
+    margin: 5px;
+}
+
+#buttons-workspace button{
+    flex: 1;
+    height: 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #771C30;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #BEA951;
+    box-shadow: 5px 5px 15px #ab9849, 
+                -5px -5px 15px #d1ba59;
+}
+
+#finalize-button{
+    flex: 1;
+    height: 50px;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: #771C30;
+}
+
+#finalize-button button{
+    position: relative;
+    width: 90%;
+    height: 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #BEA951;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #771C30;
+    box-shadow: 5px 5px 10px #5e1626, 
+    -5px -5px 10px #90223a
+}
+
+
+
+/* Account CSS */
+
+#cover-account{
+    
+    height: 100vh;
+    background-color: #771C30;
+    
+    z-index: -5;
+}
+
+#account-displays{
+    display: flex;
+    
+}
+
+#info{
+    flex: 1;
+    position: relative;
+    top: 10px;
+    
+    height: 80vh;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 20px;
+    color: #E2D9BC;
+    background-color: #771C30;
+    box-shadow: 12px 12px 27px #6c192c, 
+                -12px -12px 27px #821f34;
+}
+
+#info h1{
+    text-align: center;
+}
+
+#info-container{
+    margin: 10px;
+}
+
+#info-container div{
+    display: flex;
+    margin: 15px;
+}
+
+#info-container div p:nth-child(even){
+    color: #f7f7f7;
+    margin-left: 5px;
+}
+
+#signout a{
+    cursor: pointer;
+    text-decoration: none;
+    color: #f7f7f7;
+}
+
+#rented-workspaces-account{
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    position: relative;
+    
+    margin: 20px;
+    border-radius: 15px;
+    background-color: #C1354A;
+}
+
+#workspace-account{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 125px;
+    width: 90%;
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 13px;
+    background-color: #C1354A;
+    box-shadow:  10px 10px 13px #ac2f42, 
+             -10px -10px 13px #d63b52;
+
+}
+
+#workspace-info-account{
+    display: flex;
+    flex: 2;
+    color: #E2D9BC;
+    font-size: .75em;
+}
+
+#info-photo-account{
+    flex: 1;
+    margin: 8px;
+    border-radius: 12px;
+    justify-content: center;
+    background-color: #E2D9BC;
+    box-shadow: inset 9px 9px 13px #cbc3a9, 
+            inset -9px -9px 13px #f9efcf;
+}
+
+#info-photo-account i{
+    color: #C1354A;
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#info-property-account{
+    flex: 3;
+    margin: 5px;
+    margin-left: 20px;
+}
+
+
+
+#workspace-info-buttons{
+    flex: 1;
+}
+
+#release-rental{
+    position: relative;
+    height: 30px;
+    width: 33%;
+    margin: auto;
+    margin-left: 33%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    color: #E2D9BC;
+    background-color: #C1354A;
+    box-shadow:  7px 7px 14px #b03043, 
+             -7px -7px 14px #d23a51;
+}
+
+#property-name-account{
+    text-align: center;
+}
+
+/* Footer CSS */
+.footer {
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #771C30;
+    
+}
+
+#copyright{
+    flex: 1;
+    padding: 20px;
+    width: 40%;
+    color: #E2D9BC;
+}
+
+#social{
+    display: flex;
+    flex: 1;
+    margin: 10px;
+}
+
+#social div{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    border-radius: 8px;
+    background: linear-gradient(325deg, #7f1e33, #6b192b);
+    box-shadow:  6px 6px 12px #651829, 
+             -6px -6px 12px #892037;
+}
+
+#social div a i{
+    position: relative;
+    font-size: 40px;
+    top: 10px;
+    left: 13px;
+    color: #E2D9BC;
+    align-self: center;
+}
+#social div a{
+    text-decoration: none;
+}
+
+
+
+
+

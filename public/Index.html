@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Saira+Semi+Condensed&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css/">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -28,39 +28,43 @@
             <div id="register-container">
                 <div id="register">
                     <h2>Add An Account</h2>
-                    <div id="inputs-home">
-                        <p>
-                            <i class="fa fa-user"></i>
-                            <input type="text" id="fName" value="First Name" onfocus="value=''">
-                        </p>
-                        <p>
-                            <i class="fa fa-user"></i>
-                            <input type="text" id="lName" value="Last Name" onfocus="value=''">
-                        </p>
-                        <p>
-                            <i class="fa fa-user"></i>
-                            <input type="text" id="phone" value="Phone 123-456-7890" onfocus="value=''">
-                        </p>
-                        <p>
-                            <i class="fa fa-envelope"></i>
-                            <input type="email" id="username" value="email" onfocus="value=''">
-                        </p>
-                        <p>
-                            <i class="fa fa-key"></i>
-                            <input type="password" id="password" value="password" onfocus="value=''">
-                        </p>
-                        <div id="radio">
-                            <input type="radio" id="owner" name="user-type">
-                            <label for="owner">Owner</label>
-                            <input type="radio" id="coworker" name="user-type">
-                            <label for="coworker">Coworker</label>
+                    <form action = "http://localhost:3030/register" method = "POST">
+                    
+                        <div id="inputs-home">
+                            
+                            <p>
+                                <i class="fa fa-user"></i>
+                                <input type="text" id="fName" name="fName" value="First Name" onfocus="value=''">
+                            </p>
+                            <p>
+                                <i class="fa fa-user"></i>
+                                <input type="text" id="lName" name="lName" value="Last Name" onfocus="value=''">
+                            </p>
+                            <p>
+                                <i class="fa fa-user"></i>
+                                <input type="text" id="phone" name="phone" value="Phone 123-456-7890" onfocus="value=''">
+                            </p>
+                            <p>
+                                <i class="fa fa-envelope"></i>
+                                <input type="email" id="username" name="username" value="email" onfocus="value=''">
+                            </p>
+                            <p>
+                                <i class="fa fa-key"></i>
+                                <input type="password" id="password" name="password" value="password" onfocus="value=''">
+                            </p>
+                            <div id="radio">
+                                <input type="radio" id="owner" name="usertype" value="owner">
+                                <label for="owner">Owner</label>
+                                <input type="radio" id="coworker" name="usertype" value="coworker">
+                                <label for="coworker">Coworker</label>
+                            </div>
                         </div>
-                    </div>
-                    <div id="buttons-home">
-                        <button type="reset" id="btn-cancel-home">Cancel</button>
-                        <button type="button" id="btn-create-home">Create</button>
-                        
-                    </div>
+                        <div id="buttons-home">
+                            <button type="reset" id="btn-cancel-home">Cancel</button>
+                            <button type="submit" id="btn-create-home">Create</button>
+                            
+                        </div>
+                    </form>
                     <p id="invalid-home"></p>
                     <div id="signIn-msg">
                         <p>Already a member? <a href="SignIn.html">Sign In</a></p>
@@ -91,6 +95,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js"></script>
+    <script src="/scripts/app.js"></script>
 </body>
 </html>
