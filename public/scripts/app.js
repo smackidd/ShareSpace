@@ -48,14 +48,14 @@
 
 
 let buttonPush = ()=> {
-    if (localStorage.getItem("user")){
-        var user = retrieveData();
-    } else {
-        var user = [];
-    }
-    console.log(user);
+    // if (localStorage.getItem("user")){
+    //     var user = retrieveData();
+    // } else {
+    //     var user = [];
+    // }
+    // console.log(user);
 
-    const cancelButton = document.getElementById('btn-cancel-home');
+    // const cancelButton = document.getElementById('btn-cancel-home');
     //const createButton = document.getElementById('btn-create-home');
 
     cancelButton.addEventListener('click', ()=>{

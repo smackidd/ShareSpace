@@ -921,6 +921,9 @@ li a {
 }
 
 /* Update CSS */
+#propertyholder{
+    display: none;
+}
 
 #container-update{
     

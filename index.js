@@ -8,6 +8,10 @@ var register = require('./routes/register');
 
 
 app.use('/', require('./routes/register'));
+app.use('/', require('./routes/listings'));
+app.use('/', require('./routes/signIn'));
+app.use('/', require('./routes/update'));
+//app.use('/', require('./routes/account'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req,res) => {
@@ -16,6 +20,18 @@ app.get('/', (req,res) => {
 
 app.get('/listings', (req,res) => {
     res.sendFile(__dirname + "/public/" + "listings.html");
+});
+
+app.get('/signIn', (req,res) => {
+    res.sendFile(__dirname + "/public/" + "SignIn.html")
+});
+
+app.get('/account', (req,res) => {
+    res.sendFile(__dirname + "/public/" + "account.html")
+});
+
+app.get('/update', (req,res) => {
+    res.sendFile(__dirname + "/public/" + "update.html")
 });
 
 
