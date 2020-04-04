@@ -96,22 +96,22 @@ fetch('http://localhost:3030/user_data')
             } else {
                 rentedSpaces.forEach((rented, index) => {
                     
-                    if (rented.UserID == currentUser.userid){
+                    if (rented.UserID == currentUser.ID){
                         // look for the workspace that matches the rented element
                         
                         var propertyName = "";
                         var propertyAddress = "";
                         var workspacePrice = "";
-                        workspacesAll.forEach((property) => {
-                            property.forEach((workspace, index2) => {
+                        workspacesAll.forEach((property, index2) => {
+                           
                                 if (index2 > 0) {
-                                    if (workspace.WorkSpaceID == rented.WorkspaceID){
-                                        propertyName = workspace.property[1].propertyName + " - " + workspace.workspaceType;
-                                        propertyAddress = workspace.property[1].propertyAddress;
-                                        workspacePrice = workspace.price + "/" + workspace.leaseLength;
+                                    if (property.WorkSpaceID == rented.WorkspaceID){
+                                        propertyName = property.property[1].propertyName + " - " + property.workspaceType;
+                                        propertyAddress = property.property[1].propertyAddress;
+                                        workspacePrice = property.price + "/" + property.leaseLength;
                                     }
                                 }
-                            });
+                            
                         });
 
                         
@@ -128,7 +128,7 @@ fetch('http://localhost:3030/user_data')
                                     '</div>' +
                                 '</div>' +
                                 '<div id="workspace-info-buttons">' +
-                                    '<button type="button" id="release-rental">Release Rental</button>' +
+                                    '<button type="submit" id="release-rental">Release Rental</button>' +
                                 '</div>' +    
                             '</div>';
 
@@ -150,17 +150,17 @@ fetch('http://localhost:3030/user_data')
                     rentedSpaces.forEach((rentedAll, index) => {
                         // filter through all rented spaces to match only the user's rented spaces
                         if (rentedAll = userRented[userIndex]){
-                            rentedSpaces.splice(index, 1);
+                            data.rentedWorkspaces.splice(index, 1);
                             workspacesAll.forEach((property, propertyIndex) => {
                                 //if (propertyIndex > 0){
-                                property.forEach((workspace, workIndex) => {
+                                
                                     
-                                    if (workIndex > 0){
-                                        if (workspace.WorkSpaceID == rentedAll.WorkspaceID){
-                                            workspacesAll[propertyIndex][workIndex].Available = true;
+                                    if (propertyIndex > 0){
+                                        if (property.WorkSpaceID == rentedAll.WorkspaceID){
+                                            data.workspacesAll[propertyIndex].Available = true;
                                         }
                                     }    
-                                });
+                                
                             });
                         }
                     });
@@ -168,10 +168,11 @@ fetch('http://localhost:3030/user_data')
                     
                     
                     
-                    localStorage.setItem('rentedSpaces', JSON.stringify(rentedSpaces));
-                    localStorage.setItem('workspaces', JSON.stringify(workspacesAll));
-                    window.location.assign("listings.html");
-
+                    // localStorage.setItem('rentedSpaces', JSON.stringify(rentedSpaces));
+                    // localStorage.setItem('workspaces', JSON.stringify(workspacesAll));
+                    // window.location.assign("listings.html");
+                    console.log(data);
+                    document.getElementById('propertyholder').value = JSON.stringify(data);
                 });
             });
         }

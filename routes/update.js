@@ -40,11 +40,11 @@ router.post('/property/', urlencodedParser, (req, res) => {
     // clean up JSON data
     console.log(property);
     property.forEach((element, index) => {
-        if (index == 0) {
-            user_data.workspacesAll[0].newID += element;
-        } else {
-            element.WorkSpaceID = user_data.workspacesAll[0].newID + index - 1;
+        if (index > 0) {
+            user_data.workspacesAll[0].newID += 1
+            element.WorkSpaceID = user_data.workspacesAll[0].newID;
             element.property[0] = newPropertyID;
+            element.property[1].propertyID = newPropertyID;
             element.property[1].propertyOwner = user_data.currentUser[0];
             user_data.workspacesAll.push(element)
         }

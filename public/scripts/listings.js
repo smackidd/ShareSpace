@@ -16,8 +16,10 @@ fetch('http://localhost:3030/user_data')
     .then((data) => {
         console.log("data: ", data);
         currentUser = data.currentUser[0];
+        displayArray = [];
         console.log("currentUser.usertype: ", currentUser.usertype);
         function setPage(){
+            // changes navbar display based on usertype
             if (currentUser.usertype == "owner"){
                 document.getElementById('links').innerHTML = "<li><a href='http://localhost:3030/listings'>Listings</a></li><ul><li><a href='http://localhost:3030/update'>Update</a></ul>";
             }
@@ -26,135 +28,173 @@ fetch('http://localhost:3030/user_data')
             } else {
                 document.getElementById('signIn').innerHTML = "<li><a href='http://localhost:3030/signIn'>Sign In</a></li>"
             }
-        
-            // if (currentUser.owner){
-            //     const navbar = document.querySelector('#navbar');
-            //     navbar.className.toggle('owner-navbar');
-            // }
-        }
+
+            // intitializing the displayArray
+            
+            data.workspacesAll.forEach((workspace, index) => {
+                if (index > 0) {
+                    displayArray.push(workspace);
+                    console.log("display on load: ", displayArray);
+                };
+            });
+            
+        };
         setPage();
 
+
+        // Sort the display based on an Ascending button push
+        function sortArrayAsc(index){
+            console.log("Display before sort: ", displayArray)
+            // adapted from stackoverflow objs.sort((a,b) => (a.last_nom > b.last_nom) ? 1 : ((b.last_nom > a.last_nom) ? -1 : 0));
+            displayArray.sort(function (a,b) { 
+                var x = a.workspaceType.toLowerCase();
+                var y = b.workspaceType.toLowerCase();
+                if (x < y) return -1;
+                if (x > y) return 1;
+                return 0;    
+            });
+            console.log("Display after sort: ", displayArray)
+        };
+
+        function sortArrayDesc(index){
+            displayArray.workspaceType.reverse();
+        };
+        /////
+        // Filter and Sort buttons
+        //
+        // - Sort buttons can be done in Switch/Case with querySelectorAll
+        // - Filter dropdowns needs to search through workspacesAll to populate values
+        // - Need a submit button? 
+        // - Need to remember filter and sort values 
+        // - Need to display from a display array
+        //
+        /////
+
+        
+
         function workspaceDisplay(){
-            console.log(data.workspacesAll.length);
+            console.log("data.workspacesAll: ", data.workspacesAll);
             let parking, transit;
             let workspaceIndex = [];
             //fix array iterations
-            for (let i = 0; i < data.workspacesAll.length; i++) {
-                for (let j = 1; j < data.workspacesAll[i].length; j++){    
+            for (let i = 1; i < data.workspacesAll.length; i++) {
+                  
             
-                    if (data.workspacesAll[i][j].property[1].propertyParking) {
-                        parking = "Yes";
-                    } else {
-                        parking = "No";
-                    }
-                    if (data.workspacesAll[i][j].property[1].propertyTransit) {
-                        transit = "Yes";
-                    } else {
-                        transit = "No";
-                    }
-                    if (data.workspacesAll[i][j].smoking){
-                        smoking = "Yes";
-                    } else {
-                        smoking = "No";
-                    }
-        
-                    // pass all html for each workspace box into a string variable
-                    const elemOwner = '<div id="workspace-box">' +
-                        '<div id="listings-workspace">' +
-                            '<div id="photo-listings"><i class="fa fa-camera"></i></div>' +
-                            '<div id="property-info">' +
-                                '<h2 id="property-title">' + data.workspacesAll[i][j].property[1].propertyName + ' - ' + data.workspacesAll[i][j].workspaceType + '</h2>' +
-                                '<div id="property-address-listings">' +
-                                    '<p>' + data.workspacesAll[i][j].property[1].propertyAddress + '</p>' +
-                                    '<p>' + data.workspacesAll[i][j].property[1].propertyNeighborhood + '</p>' +
-                                    '<p>'+ data.workspacesAll[i][j].property[1].propertySquareFoot + ' SqFT</p>' +
-                                    '<div id="parking-transit">' +
-                                        '<p>Parking: ' + parking + '</p>' +
-                                        '<p>Transit: ' + transit + '</p>' +
-                                    '</div>' +
-                                '</div>    ' +
+                if (data.workspacesAll[i].property[1].propertyParking) {
+                    parking = "Yes";
+                } else {
+                    parking = "No";
+                }
+                if (data.workspacesAll[i].property[1].propertyTransit) {
+                    transit = "Yes";
+                } else {
+                    transit = "No";
+                }
+                if (data.workspacesAll[i].smoking){
+                    smoking = "Yes";
+                } else {
+                    smoking = "No";
+                }
+    
+                // pass all html for each workspace box into a string variable
+                const elemOwner = '<div id="workspace-box">' +
+                    '<div id="listings-workspace">' +
+                        '<div id="photo-listings"><i class="fa fa-camera"></i></div>' +
+                        '<div id="property-info">' +
+                            '<h2 id="property-title">' + data.workspacesAll[i].property[1].propertyName + ' - ' + data.workspacesAll[i].workspaceType + '</h2>' +
+                            '<div id="property-address-listings">' +
+                                '<p>' + data.workspacesAll[i].property[1].propertyAddress + '</p>' +
+                                '<p>' + data.workspacesAll[i].property[1].propertyNeighborhood + '</p>' +
+                                '<p>'+ data.workspacesAll[i].property[1].propertySquareFoot + ' SqFT</p>' +
+                                '<div id="parking-transit">' +
+                                    '<p>Parking: ' + parking + '</p>' +
+                                    '<p>Transit: ' + transit + '</p>' +
+                                '</div>' +
+                            '</div>    ' +
+                        '</div>' +
+                        '<div id="workspace-container-listings">' +
+                            '<div id="workspace-info">' +
+                                '<p>Owner: ' + data.workspacesAll[i].property[1].propertyOwner.fname + " " + data.workspacesAll[i].property[1].propertyOwner.lname + '</p>' +
+                                '<p>Seats: ' + data.workspacesAll[i].numberOfSeats + '</p>' +
+                                '<p>Available: ' + data.workspacesAll[i].dateAvailable + '</p>' +
+                                '<p>Price: ' + data.workspacesAll[i].price + '/' + data.workspacesAll[i].leaseLength + '</p>' +
+                                '<p>Smoking: ' + smoking + '</p>    ' +
                             '</div>' +
-                            '<div id="workspace-container-listings">' +
-                                '<div id="workspace-info">' +
-                                    '<p>Owner: ' + data.workspacesAll[i][j].property[1].propertyOwner.firstName + " " + data.workspacesAll[i][j].property[1].propertyOwner.lastName + '</p>' +
-                                    '<p>Seats: ' + data.workspacesAll[i][j].numberOfSeats + '</p>' +
-                                    '<p>Available: ' + data.workspacesAll[i][j].dateAvailable + '</p>' +
-                                    '<p>Price: ' + data.workspacesAll[i][j].price + '/' + data.workspacesAll[i][j].leaseLength + '</p>' +
-                                    '<p>Smoking: ' + smoking + '</p>    ' +
+                        '</div>' +
+                    '</div>' +
+                    '<div id="listings-buttons">' +
+                        '<div id="ratings-listings">' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p id="stars-number">3.5/5 stars</p>    ' +
+                        '</div>' +
+                        '<div id="edit-property">' +
+                            '<div class="listings-buttons-container">' +
+                                '<button type="button" id="btn-edit-property">Edit Property</button>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div id="remove-property">' +
+                            '<div class="listings-buttons-container">' +
+                                '<button type="button" id="btn-remove-property">Remove Property</button>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div id="edit-workspace">' +
+                            '<div class="listings-buttons-container">' +
+                                '<button type="button" id="btn-edit-workspace">Edit Workspace</button>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div id="remove-workspace">' +
+                            '<div class="listings-buttons-container">' +
+                                '<button type="button" id="btn-remove-workspace">Remove Workspace</button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+    
+                    // Hidden Edit Property Container
+                    '<div class="edit-form-container">' +
+                        '<div class="edit-form">' +
+                            '<p>' +
+                                '<input type="text" class="pName-property-edit" value="Property Name">' +
+                            '</p>' +
+                            '<p>' +
+                                '<input type="text" class="pAddress-property-edit" value="Address">' +
+                            '</p>' +
+                            '<p>' +
+                                '<input type="text" class="pNeighborhood-property-edit" value="Neighborhood">' +
+                            '</p>' +
+                            '<p>' +
+                                '<input type="text" class="pSquareFoot-property-edit" value="Square Footage">' +
+                            '</p>' +
+                            '<div id="checkbox">' +
+                                '<div>' +
+                                    '<input type="checkbox" id="garage">' +
+                                    '<label for="garage">Parking</label>' +
+                                '</div>' +
+                                '<div>' +
+                                    '<input type="checkbox" id="transit">' +
+                                    '<label for="transit">Transit Access</label>' +
                                 '</div>' +
                             '</div>' +
                         '</div>' +
-                        '<div id="listings-buttons">' +
-                            '<div id="ratings-listings">' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p id="stars-number">3.5/5 stars</p>    ' +
-                            '</div>' +
-                            '<div id="edit-property">' +
-                                '<div class="listings-buttons-container">' +
-                                    '<button type="button" id="btn-edit-property">Edit Property</button>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div id="remove-property">' +
-                                '<div class="listings-buttons-container">' +
-                                    '<button type="button" id="btn-remove-property">Remove Property</button>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div id="edit-workspace">' +
-                                '<div class="listings-buttons-container">' +
-                                    '<button type="button" id="btn-edit-workspace">Edit Workspace</button>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div id="remove-workspace">' +
-                                '<div class="listings-buttons-container">' +
-                                    '<button type="button" id="btn-remove-workspace">Remove Workspace</button>' +
-                                '</div>' +
-                            '</div>' +
+                        '<div class="edit-buttons">' +
+                            '<button type="reset" id="btn-cancel-property">Cancel</button>' +
+                            '<button type="submit" id="btn-submit-property">Submit</button>' +
                         '</div>' +
-        
-                        // Hidden Edit Property Container
-                        '<div class="edit-form-container">' +
-                            '<div class="edit-form">' +
-                                '<p>' +
-                                    '<input type="text" class="pName-property-edit" value="Property Name">' +
-                                '</p>' +
-                                '<p>' +
-                                    '<input type="text" class="pAddress-property-edit" value="Address">' +
-                                '</p>' +
-                                '<p>' +
-                                    '<input type="text" class="pNeighborhood-property-edit" value="Neighborhood">' +
-                                '</p>' +
-                                '<p>' +
-                                    '<input type="text" class="pSquareFoot-property-edit" value="Square Footage">' +
-                                '</p>' +
-                                '<div id="checkbox">' +
-                                    '<div>' +
-                                        '<input type="checkbox" id="garage">' +
-                                        '<label for="garage">Parking</label>' +
-                                    '</div>' +
-                                    '<div>' +
-                                        '<input type="checkbox" id="transit">' +
-                                        '<label for="transit">Transit Access</label>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="edit-buttons">' +
-                                '<button type="reset" id="btn-cancel-property">Cancel</button>' +
-                                '<button type="button" id="btn-submit-property">Submit</button>' +
-                            '</div>' +
-                        '</div>' +
-        
-                        // hidden Are you Sure? Property Remove Container
-                        '<div class="are-you-sure-property">' +
-                            '<p>Are you sure? This will erase all workspaces in the property.</p>' +
-                            '<p><button type="button" id="btn-sure-cancel-property">Cancel</button></p>' +
-                            '<p><button type="button" id="btn-sure-remove-property">Remove</button></p>' +
-                        '</div>' +
-        
-                        // hidden Edit Workspace container
+                    '</div>' +
+    
+                    // hidden Are you Sure? Property Remove Container
+                    '<div class="are-you-sure-property">' +
+                        '<p>Are you sure? This will erase all workspaces in the property.</p>' +
+                        '<p><button type="button" id="btn-sure-cancel-property">Cancel</button></p>' +
+                        '<p><button type="submit" id="btn-sure-remove-property">Remove</button></p>' +
+                    '</div>' +
+    
+                    // hidden Edit Workspace container
+                    
+                        
                         '<div id="office-container-listings">' +
                             
                             '<div class="new-space-listings">' +
@@ -185,101 +225,123 @@ fetch('http://localhost:3030/user_data')
                             
                             '<div class="edit-buttons">' +
                                 '<button type="reset" id="btn-cancel-workspace">Cancel</button>' +
-                                '<button type="button" id="btn-submit-workspace">Submit</button>' +
+                                '<button type="submit" id="btn-submit-workspace">Submit</button>' +
                             '</div>' +
                             
                         '</div>   ' +
-        
-                        // hidden Are you Sure? Worksapce Remove Container
-                        '<div class="are-you-sure-workspace">' +
-                            '<p>Are you sure?</p>' +
-                            '<p><button type="button" id="btn-sure-cancel-workspace">Cancel</button></p>' +
-                            '<p><button type="button" id="btn-sure-remove-workspace">Remove</button></p>' +
-                        '</div>' +
-                    '</div>';
-        
-        
-        
-        
-                    const elemCoworker = '<div id="workspace-box">' +
-                        '<div id="listings-workspace">' +
-                            '<div id="photo-listings"><i class="fa fa-camera"></i></div>' +
-                            '<div id="property-info">' +
-                                '<h2 id="property-title">' + data.workspacesAll[i][j].property[1].propertyName + ' - ' + data.workspacesAll[i][j].workspaceType + '</h2>' +
-                                '<div id="property-address-listings">' +
-                                    '<p>' + data.workspacesAll[i][j].property[1].propertyAddress + '</p>' +
-                                    '<p>' + data.workspacesAll[i][j].property[1].propertyNeighborhood + '</p>' +
-                                    '<p>'+ data.workspacesAll[i][j].property[1].propertySquareFoot + ' SqFT</p>' +
-                                    '<div id="parking-transit">' +
-                                        '<p>Parking: ' + parking + '</p>' +
-                                        '<p>Transit: ' + transit + '</p>' +
-                                    '</div>' +
-                                '</div>    ' +
-                            '</div>' +
-                            '<div id="workspace-container-listings">' +
-                                '<div id="workspace-info">' +
-                                    '<p>Owner: ' + data.workspacesAll[i][j].property[1].propertyOwner.firstName + " " + data.workspacesAll[i][j].property[1].propertyOwner.lastName + '</p>' +
-                                    '<p>Seats: ' + data.workspacesAll[i][j].numberOfSeats + '</p>' +
-                                    '<p>Available: ' + data.workspacesAll[i][j].dateAvailable + '</p>' +
-                                    '<p>Price: ' + data.workspacesAll[i][j].price + '/' + data.workspacesAll[i][j].leaseLength + '</p>' +
-                                    '<p>Smoking: ' + smoking + '</p>    ' +
+                     
+    
+                    // hidden Are you Sure? Worksapce Remove Container
+                    '<div class="are-you-sure-workspace">' +
+                        '<p>Are you sure?</p>' +
+                        '<p><button type="button" id="btn-sure-cancel-workspace">Cancel</button></p>' +
+                        '<p><button type="submit" id="btn-sure-remove-workspace">Remove</button></p>' +
+                    '</div>' +
+                '</div>';
+    
+    
+    
+    
+                const elemCoworker = '<div id="workspace-box">' +
+                    '<div id="listings-workspace">' +
+                        '<div id="photo-listings"><i class="fa fa-camera"></i></div>' +
+                        '<div id="property-info">' +
+                            '<h2 id="property-title">' + data.workspacesAll[i].property[1].propertyName + ' - ' + data.workspacesAll[i].workspaceType + '</h2>' +
+                            '<div id="property-address-listings">' +
+                                '<p>' + data.workspacesAll[i].property[1].propertyAddress + '</p>' +
+                                '<p>' + data.workspacesAll[i].property[1].propertyNeighborhood + '</p>' +
+                                '<p>'+ data.workspacesAll[i].property[1].propertySquareFoot + ' SqFT</p>' +
+                                '<div id="parking-transit">' +
+                                    '<p>Parking: ' + parking + '</p>' +
+                                    '<p>Transit: ' + transit + '</p>' +
                                 '</div>' +
+                            '</div>    ' +
+                        '</div>' +
+                        '<div id="workspace-container-listings">' +
+                            '<div id="workspace-info">' +
+                                '<p>Owner: ' + data.workspacesAll[i].property[1].propertyOwner.fname + " " + data.workspacesAll[i].property[1].propertyOwner.lname + '</p>' +
+                                '<p>Seats: ' + data.workspacesAll[i].numberOfSeats + '</p>' +
+                                '<p>Available: ' + data.workspacesAll[i].dateAvailable + '</p>' +
+                                '<p>Price: ' + data.workspacesAll[i].price + '/' + data.workspacesAll[i].leaseLength + '</p>' +
+                                '<p>Smoking: ' + smoking + '</p>    ' +
                             '</div>' +
                         '</div>' +
-                        '<div id="listings-buttons">' +
-                            '<div id="ratings-listings">' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p><i class="fa fa-star"></i></p>' +
-                                '<p id="stars-number">3.5/5 stars</p>    ' +
-                            '</div>' +
-                            '<div id="contact-owner">' +
-                                '<div class="listings-buttons-container">' +
-                                    '<button type="button" id="btn-contact-owner">Contact Info</button>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div id="rent-workspace">' +
-                                '<div class="listings-buttons-container">' +
-                                    '<button type="button" id="btn-rent-workspace">Rent Workspace</button>' +
-                                '</div>' +
-                            '</div>' +
-                            
+                    '</div>' +
+                    '<div id="listings-buttons">' +
+                        '<div id="ratings-listings">' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p><i class="fa fa-star"></i></p>' +
+                            '<p id="stars-number">3.5/5 stars</p>    ' +
                         '</div>' +
-                        '<div id="owner-info-listings">' +
-                            '<div id="owner-name-listings"></div>' +
-                            '<div id="owner-phone-listings"></div>' +
-                            '<div id="owner-email-listings"></div>' +
-                            '<button type="button" id="btn-cancel-owner-info">Cancel</button>' +
+                        '<div id="contact-owner">' +
+                            '<div class="listings-buttons-container">' +
+                                '<button type="button" id="btn-contact-owner">Contact Info</button>' +
+                            '</div>' +
                         '</div>' +
-                    '</div>';
-                    
-                    // creates an array help match the workspace child index to the data.workspacesAll array index
-                    let temp = {propertyIndex: i, workIndex: j};
-                    console.log("hello");
-                    console.log("currentUser.usertype: ", currentUser.usertype);
-                    // put all workspace box html into the DOM for each array element in data.workspacesAll
-                    if (currentUser.usertype == "owner"){
+                        '<div id="rent-workspace">' +
+                            '<div class="listings-buttons-container">' +
+                                '<button type="submit" id="btn-rent-workspace">Rent Workspace</button>' +
+                            '</div>' +
+                        '</div>' +
+                        
+                    '</div>' +
+                    '<div id="owner-info-listings">' +
+                        '<div id="owner-name-listings"></div>' +
+                        '<div id="owner-phone-listings"></div>' +
+                        '<div id="owner-email-listings"></div>' +
+                        '<button type="button" id="btn-cancel-owner-info">Cancel</button>' +
+                    '</div>' +
+                '</div>';
+                
+                // creates an array help match the workspace child index to the data.workspacesAll array index
+                let temp = {propertyIndex: i};
+                console.log("hello");
+                console.log("currentUser.usertype: ", currentUser.usertype);
+                // put all workspace box html into the DOM for each array element in data.workspacesAll
+                if (currentUser.usertype == "owner"){
+                    workspaceIndex.push(temp);
+                    $('#put-workspaces-here').after(elemOwner);
+                } else {
+                    // only show unrented workspaces
+                    if (data.workspacesAll[i].Available){
                         workspaceIndex.push(temp);
-                        $('#put-workspaces-here').after(elemOwner);
-                    } else {
-                        // only show unrented workspaces
-                        if (data.workspacesAll[i][j].Available){
-                            workspaceIndex.push(temp);
-                            $('#put-workspaces-here').after(elemCoworker);
-                        }
+                        $('#put-workspaces-here').after(elemCoworker);
                     }
-                    
-                    
                 }
+                    
+                    
+                
             }
             
             return workspaceIndex;
             
         }
-        console.log("hello");
+        //console.log("hello");
         const workspaceIndex = workspaceDisplay();
+        //console.log("workspaceIndex: ", workspaceIndex);
+
+        // assigns a workspace to the coworkers rent array
+        function rentWorkspace(childIndex) {
+            index = (childIndex + 1 - workspaceIndex.length) * -1;
+            const propertyIndex = workspaceIndex[index].propertyIndex;
+            //const workIndex = workspaceIndex[index].workIndex; 
+            data.workspacesAll[propertyIndex].Available = false;
+            localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll)); 
+            
+            const user = currentUser.ID;
+            const workspace = data.workspacesAll[propertyIndex].WorkSpaceID;
+            const rentedTemp = {
+                UserID: user,
+                WorkspaceID: workspace
+            };
+            //console.log("rentedTemp: ", rentedTemp);
+            data.rentedWorkspaces.push(rentedTemp);
+            //localStorage.setItem('rentedSpaces', JSON.stringify(rentedWorkspaces));
+
+        }
 
         function buttons(){
             const editPropertyButton = document.querySelectorAll('#btn-edit-property');
@@ -317,6 +379,8 @@ fetch('http://localhost:3030/user_data')
             const contactOwnerEmail = document.querySelectorAll('#owner-email-listings');
             const contactOwnerCancel = document.querySelectorAll('#btn-cancel-owner-info');
             const rentWorkspaceButton = document.querySelectorAll('#btn-rent-workspace');
+            const ascSortButton = document.querySelectorAll('.btn-ascending');
+            const descSortButton = document.querySelectorAll('.btn-descending');
         
             //console.log(editFormContainer);
         
@@ -341,24 +405,37 @@ fetch('http://localhost:3030/user_data')
                     // so we need to recitfy the problem with the formula below.
                     index = (childIndex + 1 - workspaceIndex.length) * -1;
                     const propertyIndex = workspaceIndex[index].propertyIndex;
-                    const workIndex = workspaceIndex[index].workIndex;
-                    data.workspacesAll[propertyIndex].forEach((property, workIndex) => {
-                        if (workIndex > 0) {
-                        // console.log(propertyName[childIndex].value);
-                        // console.log(data.workspacesAll[propertyIndex][workIndex].property[1].propertyName);
-                        data.workspacesAll[propertyIndex][workIndex].property[1].propertyName = propertyName[childIndex].value;
-                        data.workspacesAll[propertyIndex][workIndex].property[1].propertyAddress = propertyAddress[childIndex].value;
-                        data.workspacesAll[propertyIndex][workIndex].property[1].propertyNeighborhood = propertyNeighborhood[childIndex].value;
-                        data.workspacesAll[propertyIndex][workIndex].property[1].propertySquareFoot = propertySqft[childIndex].value;
-                        data.workspacesAll[propertyIndex][workIndex].property[1].propertyParking = parking[childIndex].checked;
-                        data.workspacesAll[propertyIndex][workIndex].property[1].propertyTransit = transit[childIndex].checked;
-                        }  
+                    //const workIndex = workspaceIndex[index].workIndex;
+                    
+                    // console.log(propertyName[childIndex].value);
+                    // console.log(data.workspacesAll[propertyIndex].property[1].propertyName);
+                    console.log(data);
+                    // cycle through all workspaces to find property ids that match the id that was edited
+                    data.workspacesAll.forEach((workspace, index) => {
+                        
+                        if (index > 0) {
+                            // console.log("list: ", workspace.property[1].propertyID);
+                            // console.log("edited: ", data.workspacesAll[propertyIndex].property[1].propertyID);
+                            if (workspace.property[1].propertyID == data.workspacesAll[propertyIndex].property[1].propertyID){
+                                data.workspacesAll[index].property[1].propertyName = propertyName[childIndex].value;
+                                data.workspacesAll[index].property[1].propertyAddress = propertyAddress[childIndex].value;
+                                data.workspacesAll[index].property[1].propertyNeighborhood = propertyNeighborhood[childIndex].value;
+                                data.workspacesAll[index].property[1].propertySquareFoot = propertySqft[childIndex].value;
+                                data.workspacesAll[index].property[1].propertyParking = parking[childIndex].checked;
+                                data.workspacesAll[index].property[1].propertyTransit = transit[childIndex].checked;
+                            }
+                        }
                     });
+                    
+                        
                     editFormContainer[childIndex].style.display = "none";
-                    localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll));
+                    //places all the data in a hidden input box to be grabbed by the server editWorkspace POST API
+                    const propertyholder = document.getElementById("propertyholder");
+                    propertyholder.value = JSON.stringify(data);
+                    // localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll));
                     
                     
-                    window.location.assign("listings.html");
+                    // window.location.assign("listings.html");
                 });
             });
         
@@ -383,11 +460,21 @@ fetch('http://localhost:3030/user_data')
                     // so we need to recitfy the problem with the formula below.
                     index = (childIndex + 1 - workspaceIndex.length) * -1;
                     const propertyIndex = workspaceIndex[index].propertyIndex;
-                    
-                    data.workspacesAll.splice(propertyIndex, 1);
-                    propertySureContainer[index].style.display = "none";
-                    localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll));
-                    window.location.assign("listings.html");
+
+                    data.workspacesAll.forEach((workspace, index) => {
+                        if (index > 0) {
+                            // console.log("list: ", workspace.property[1].propertyID);
+                            // console.log("edited: ", data.workspacesAll[propertyIndex].property[1].propertyID);
+                            if (workspace.property[1].propertyID == data.workspacesAll[propertyIndex].property[1].propertyID){
+                                data.workspacesAll.splice(index, 1);
+                                propertySureContainer[childIndex].style.display = "none";
+                                console.log(data);
+                                const propertyholder = document.getElementById("propertyholder");
+                                propertyholder.value = JSON.stringify(data);
+                                // 
+                            }
+                        }
+                    });
                 });
             });
         
@@ -407,17 +494,24 @@ fetch('http://localhost:3030/user_data')
                 element.addEventListener('click', ()=>{
                     index = (childIndex + 1 - workspaceIndex.length) * -1;
                     const propertyIndex = workspaceIndex[index].propertyIndex;
-                    const workIndex = workspaceIndex[index].workIndex;
-                    data.workspacesAll[propertyIndex][workIndex].workspaceType = workspaceType[childIndex].value;
-                    data.workspacesAll[propertyIndex][workIndex].numberOfSeats = workspaceSeats[childIndex].value;
-                    data.workspacesAll[propertyIndex][workIndex].smoking = workspaceSmoking[childIndex].checked;
-                    data.workspacesAll[propertyIndex][workIndex].dateAvailable = workspaceDate[childIndex].value;
-                    data.workspacesAll[propertyIndex][workIndex].leaseLength = workspaceLease[childIndex].value;
-                    data.workspacesAll[propertyIndex][workIndex].price = workspacePrice[childIndex].value;
+                    // console.log("propertyIndex", propertyIndex);
+                    // console.log("workspaceType[childIndex].value: ", workspaceType[childIndex].value);
+                    // console.log("data.workspacesAll[propertyIndex].workspaceType: ", data.workspacesAll[propertyIndex].workspaceType);
+                    //const workIndex = workspaceIndex[index].workIndex;
+                    data.workspacesAll[propertyIndex].workspaceType = workspaceType[childIndex].value;
+                    data.workspacesAll[propertyIndex].numberOfSeats = workspaceSeats[childIndex].value;
+                    data.workspacesAll[propertyIndex].smoking = workspaceSmoking[childIndex].checked;
+                    data.workspacesAll[propertyIndex].dateAvailable = workspaceDate[childIndex].value;
+                    data.workspacesAll[propertyIndex].leaseLength = workspaceLease[childIndex].value;
+                    data.workspacesAll[propertyIndex].price = workspacePrice[childIndex].value;
         
                     editWorkspaceContainer[index].style.display = "none";
-                    localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll));
-                    window.location.assign("listings.html");
+                    //console.log("data: ", data);
+                    const propertyholder = document.getElementById("propertyholder");
+                    propertyholder.value = JSON.stringify(data);
+                        
+                    // localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll));
+                    // window.location.assign("listings.html");
                 });
             });
         
@@ -442,14 +536,17 @@ fetch('http://localhost:3030/user_data')
                     // so we need to recitfy the problem with the formula below.
                     index = (childIndex + 1 - workspaceIndex.length) * -1;
                     const propertyIndex = workspaceIndex[index].propertyIndex;
-                    const workIndex = workspaceIndex[index].workIndex;
+                    //const workIndex = workspaceIndex[index].workIndex;
                     console.log("propertyIndex: ", propertyIndex);
-                    console.log("workIndex: ", workIndex);
+                    //console.log("workIndex: ", workIndex);
                     
-                    data.workspacesAll[propertyIndex].splice(workIndex, 1);
+                    data.workspacesAll.splice(propertyIndex, 1);
                     propertySureContainer[childIndex].style.display = "none";
-                    localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll));
-                    window.location.assign("listings.html");
+                    const propertyholder = document.getElementById("propertyholder");
+                    propertyholder.value = JSON.stringify(data);
+
+                    // localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll));
+                    // window.location.assign("listings.html");
                 });
             });
         
@@ -459,10 +556,10 @@ fetch('http://localhost:3030/user_data')
         
                     var index = (childIndex + 1 - workspaceIndex.length) * -1;
                     const propertyIndex = workspaceIndex[index].propertyIndex;
-                    const workIndex = workspaceIndex[index].workIndex;
-                    contactOwnerName[childIndex].innerHTML = "Name: " + data.workspacesAll[propertyIndex][workIndex].property[1].propertyOwner.firstName + " " + data.workspacesAll[propertyIndex][workIndex].property[1].propertyOwner.lastName;
-                    contactOwnerPhone[childIndex].innerHTML = "Phone: " + data.workspacesAll[propertyIndex][workIndex].property[1].propertyOwner.phone;
-                    contactOwnerEmail[childIndex].innerHTML = "Email: " + data.workspacesAll[propertyIndex][workIndex].property[1].propertyOwner.username;
+                    //const workIndex = workspaceIndex[index].workIndex;
+                    contactOwnerName[childIndex].innerHTML = "Name: " + data.workspacesAll[propertyIndex].property[1].propertyOwner.fname + " " + data.workspacesAll[propertyIndex].property[1].propertyOwner.lname;
+                    contactOwnerPhone[childIndex].innerHTML = "Phone: " + data.workspacesAll[propertyIndex].property[1].propertyOwner.phone;
+                    contactOwnerEmail[childIndex].innerHTML = "Email: " + data.workspacesAll[propertyIndex].property[1].propertyOwner.username;
                 });
             });
         
@@ -474,8 +571,18 @@ fetch('http://localhost:3030/user_data')
         
             rentWorkspaceButton.forEach((element, childIndex) => {
                 element.addEventListener('click', ()=> {
+                    console.log("hello");
                     rentWorkspace(childIndex);
-                    window.location.assign("listings.html");
+                    const propertyholder = document.getElementById("propertyholder");
+                    propertyholder.value = JSON.stringify(data);
+                    // window.location.assign("listings.html");
+                });
+            });
+
+            // Sort Buttons
+            ascSortButton.forEach((button, childIndex) => {
+                button.addEventListener('click', ()=> {
+                    sortArrayAsc(childIndex);
                 });
             });
         
@@ -533,17 +640,17 @@ fetch('http://localhost:3030/user_data')
 //     for (let i = 0; i < data.workspacesAll.length; i++) {
 //         for (let j = 1; j < data.workspacesAll[i].length; j++){    
     
-//             if (data.workspacesAll[i][j].property[1].propertyParking) {
+//             if (data.workspacesAll[i].property[1].propertyParking) {
 //                 parking = "Yes";
 //             } else {
 //                 parking = "No";
 //             }
-//             if (data.workspacesAll[i][j].property[1].propertyTransit) {
+//             if (data.workspacesAll[i].property[1].propertyTransit) {
 //                 transit = "Yes";
 //             } else {
 //                 transit = "No";
 //             }
-//             if (data.workspacesAll[i][j].smoking){
+//             if (data.workspacesAll[i].smoking){
 //                 smoking = "Yes";
 //             } else {
 //                 smoking = "No";
@@ -554,11 +661,11 @@ fetch('http://localhost:3030/user_data')
 //                 '<div id="listings-workspace">' +
 //                     '<div id="photo-listings"><i class="fa fa-camera"></i></div>' +
 //                     '<div id="property-info">' +
-//                         '<h2 id="property-title">' + data.workspacesAll[i][j].property[1].propertyName + ' - ' + data.workspacesAll[i][j].workspaceType + '</h2>' +
+//                         '<h2 id="property-title">' + data.workspacesAll[i].property[1].propertyName + ' - ' + data.workspacesAll[i].workspaceType + '</h2>' +
 //                         '<div id="property-address-listings">' +
-//                             '<p>' + data.workspacesAll[i][j].property[1].propertyAddress + '</p>' +
-//                             '<p>' + data.workspacesAll[i][j].property[1].propertyNeighborhood + '</p>' +
-//                             '<p>'+ data.workspacesAll[i][j].property[1].propertySquareFoot + ' SqFT</p>' +
+//                             '<p>' + data.workspacesAll[i].property[1].propertyAddress + '</p>' +
+//                             '<p>' + data.workspacesAll[i].property[1].propertyNeighborhood + '</p>' +
+//                             '<p>'+ data.workspacesAll[i].property[1].propertySquareFoot + ' SqFT</p>' +
 //                             '<div id="parking-transit">' +
 //                                 '<p>Parking: ' + parking + '</p>' +
 //                                 '<p>Transit: ' + transit + '</p>' +
@@ -567,10 +674,10 @@ fetch('http://localhost:3030/user_data')
 //                     '</div>' +
 //                     '<div id="workspace-container-listings">' +
 //                         '<div id="workspace-info">' +
-//                             '<p>Owner: ' + data.workspacesAll[i][j].property[1].propertyOwner.firstName + " " + data.workspacesAll[i][j].property[1].propertyOwner.lastName + '</p>' +
-//                             '<p>Seats: ' + data.workspacesAll[i][j].numberOfSeats + '</p>' +
-//                             '<p>Available: ' + data.workspacesAll[i][j].dateAvailable + '</p>' +
-//                             '<p>Price: ' + data.workspacesAll[i][j].price + '/' + data.workspacesAll[i][j].leaseLength + '</p>' +
+//                             '<p>Owner: ' + data.workspacesAll[i].property[1].propertyOwner.firstName + " " + data.workspacesAll[i].property[1].propertyOwner.lastName + '</p>' +
+//                             '<p>Seats: ' + data.workspacesAll[i].numberOfSeats + '</p>' +
+//                             '<p>Available: ' + data.workspacesAll[i].dateAvailable + '</p>' +
+//                             '<p>Price: ' + data.workspacesAll[i].price + '/' + data.workspacesAll[i].leaseLength + '</p>' +
 //                             '<p>Smoking: ' + smoking + '</p>    ' +
 //                         '</div>' +
 //                     '</div>' +
@@ -696,11 +803,11 @@ fetch('http://localhost:3030/user_data')
 //                 '<div id="listings-workspace">' +
 //                     '<div id="photo-listings"><i class="fa fa-camera"></i></div>' +
 //                     '<div id="property-info">' +
-//                         '<h2 id="property-title">' + data.workspacesAll[i][j].property[1].propertyName + ' - ' + data.workspacesAll[i][j].workspaceType + '</h2>' +
+//                         '<h2 id="property-title">' + data.workspacesAll[i].property[1].propertyName + ' - ' + data.workspacesAll[i].workspaceType + '</h2>' +
 //                         '<div id="property-address-listings">' +
-//                             '<p>' + data.workspacesAll[i][j].property[1].propertyAddress + '</p>' +
-//                             '<p>' + data.workspacesAll[i][j].property[1].propertyNeighborhood + '</p>' +
-//                             '<p>'+ data.workspacesAll[i][j].property[1].propertySquareFoot + ' SqFT</p>' +
+//                             '<p>' + data.workspacesAll[i].property[1].propertyAddress + '</p>' +
+//                             '<p>' + data.workspacesAll[i].property[1].propertyNeighborhood + '</p>' +
+//                             '<p>'+ data.workspacesAll[i].property[1].propertySquareFoot + ' SqFT</p>' +
 //                             '<div id="parking-transit">' +
 //                                 '<p>Parking: ' + parking + '</p>' +
 //                                 '<p>Transit: ' + transit + '</p>' +
@@ -709,10 +816,10 @@ fetch('http://localhost:3030/user_data')
 //                     '</div>' +
 //                     '<div id="workspace-container-listings">' +
 //                         '<div id="workspace-info">' +
-//                             '<p>Owner: ' + data.workspacesAll[i][j].property[1].propertyOwner.firstName + " " + data.workspacesAll[i][j].property[1].propertyOwner.lastName + '</p>' +
-//                             '<p>Seats: ' + data.workspacesAll[i][j].numberOfSeats + '</p>' +
-//                             '<p>Available: ' + data.workspacesAll[i][j].dateAvailable + '</p>' +
-//                             '<p>Price: ' + data.workspacesAll[i][j].price + '/' + data.workspacesAll[i][j].leaseLength + '</p>' +
+//                             '<p>Owner: ' + data.workspacesAll[i].property[1].propertyOwner.firstName + " " + data.workspacesAll[i].property[1].propertyOwner.lastName + '</p>' +
+//                             '<p>Seats: ' + data.workspacesAll[i].numberOfSeats + '</p>' +
+//                             '<p>Available: ' + data.workspacesAll[i].dateAvailable + '</p>' +
+//                             '<p>Price: ' + data.workspacesAll[i].price + '/' + data.workspacesAll[i].leaseLength + '</p>' +
 //                             '<p>Smoking: ' + smoking + '</p>    ' +
 //                         '</div>' +
 //                     '</div>' +
@@ -756,7 +863,7 @@ fetch('http://localhost:3030/user_data')
 //                 $('#put-workspaces-here').after(elemOwner);
 //             } else {
 //                 // only show unrented workspaces
-//                 if (data.workspacesAll[i][j].Available){
+//                 if (data.workspacesAll[i].Available){
 //                     workspaceIndex.push(temp);
 //                     $('#put-workspaces-here').after(elemCoworker);
 //                 }
@@ -777,11 +884,11 @@ fetch('http://localhost:3030/user_data')
 //     index = (childIndex + 1 - workspaceIndex.length) * -1;
 //     const propertyIndex = workspaceIndex[index].propertyIndex;
 //     const workIndex = workspaceIndex[index].workIndex; 
-//     data.workspacesAll[propertyIndex][workIndex].Available = false;
+//     data.workspacesAll[propertyIndex].Available = false;
 //     localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll)); 
     
 //     const user = currentUser.userid;
-//     const workspace = data.workspacesAll[propertyIndex][workIndex].WorkSpaceID;
+//     const workspace = data.workspacesAll[propertyIndex].WorkSpaceID;
 //     const rentedTemp = {
 //         UserID: user,
 //         WorkspaceID: workspace
@@ -856,13 +963,13 @@ fetch('http://localhost:3030/user_data')
 //             data.workspacesAll[propertyIndex].forEach((property, workIndex) => {
 //                 if (workIndex > 0) {
 //                 // console.log(propertyName[childIndex].value);
-//                 // console.log(data.workspacesAll[propertyIndex][workIndex].property[1].propertyName);
-//                 data.workspacesAll[propertyIndex][workIndex].property[1].propertyName = propertyName[childIndex].value;
-//                 data.workspacesAll[propertyIndex][workIndex].property[1].propertyAddress = propertyAddress[childIndex].value;
-//                 data.workspacesAll[propertyIndex][workIndex].property[1].propertyNeighborhood = propertyNeighborhood[childIndex].value;
-//                 data.workspacesAll[propertyIndex][workIndex].property[1].propertySquareFoot = propertySqft[childIndex].value;
-//                 data.workspacesAll[propertyIndex][workIndex].property[1].propertyParking = parking[childIndex].checked;
-//                 data.workspacesAll[propertyIndex][workIndex].property[1].propertyTransit = transit[childIndex].checked;
+//                 // console.log(data.workspacesAll[propertyIndex].property[1].propertyName);
+//                 data.workspacesAll[propertyIndex].property[1].propertyName = propertyName[childIndex].value;
+//                 data.workspacesAll[propertyIndex].property[1].propertyAddress = propertyAddress[childIndex].value;
+//                 data.workspacesAll[propertyIndex].property[1].propertyNeighborhood = propertyNeighborhood[childIndex].value;
+//                 data.workspacesAll[propertyIndex].property[1].propertySquareFoot = propertySqft[childIndex].value;
+//                 data.workspacesAll[propertyIndex].property[1].propertyParking = parking[childIndex].checked;
+//                 data.workspacesAll[propertyIndex].property[1].propertyTransit = transit[childIndex].checked;
 //                 }  
 //             });
 //             editFormContainer[childIndex].style.display = "none";
@@ -919,12 +1026,12 @@ fetch('http://localhost:3030/user_data')
 //             index = (childIndex + 1 - workspaceIndex.length) * -1;
 //             const propertyIndex = workspaceIndex[index].propertyIndex;
 //             const workIndex = workspaceIndex[index].workIndex;
-//             data.workspacesAll[propertyIndex][workIndex].workspaceType = workspaceType[childIndex].value;
-//             data.workspacesAll[propertyIndex][workIndex].numberOfSeats = workspaceSeats[childIndex].value;
-//             data.workspacesAll[propertyIndex][workIndex].smoking = workspaceSmoking[childIndex].checked;
-//             data.workspacesAll[propertyIndex][workIndex].dateAvailable = workspaceDate[childIndex].value;
-//             data.workspacesAll[propertyIndex][workIndex].leaseLength = workspaceLease[childIndex].value;
-//             data.workspacesAll[propertyIndex][workIndex].price = workspacePrice[childIndex].value;
+//             data.workspacesAll[propertyIndex].workspaceType = workspaceType[childIndex].value;
+//             data.workspacesAll[propertyIndex].numberOfSeats = workspaceSeats[childIndex].value;
+//             data.workspacesAll[propertyIndex].smoking = workspaceSmoking[childIndex].checked;
+//             data.workspacesAll[propertyIndex].dateAvailable = workspaceDate[childIndex].value;
+//             data.workspacesAll[propertyIndex].leaseLength = workspaceLease[childIndex].value;
+//             data.workspacesAll[propertyIndex].price = workspacePrice[childIndex].value;
 
 //             editWorkspaceContainer[index].style.display = "none";
 //             localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll));
@@ -971,9 +1078,9 @@ fetch('http://localhost:3030/user_data')
 //             var index = (childIndex + 1 - workspaceIndex.length) * -1;
 //             const propertyIndex = workspaceIndex[index].propertyIndex;
 //             const workIndex = workspaceIndex[index].workIndex;
-//             contactOwnerName[childIndex].innerHTML = "Name: " + data.workspacesAll[propertyIndex][workIndex].property[1].propertyOwner.firstName + " " + data.workspacesAll[propertyIndex][workIndex].property[1].propertyOwner.lastName;
-//             contactOwnerPhone[childIndex].innerHTML = "Phone: " + data.workspacesAll[propertyIndex][workIndex].property[1].propertyOwner.phone;
-//             contactOwnerEmail[childIndex].innerHTML = "Email: " + data.workspacesAll[propertyIndex][workIndex].property[1].propertyOwner.username;
+//             contactOwnerName[childIndex].innerHTML = "Name: " + data.workspacesAll[propertyIndex].property[1].propertyOwner.firstName + " " + data.workspacesAll[propertyIndex].property[1].propertyOwner.lastName;
+//             contactOwnerPhone[childIndex].innerHTML = "Phone: " + data.workspacesAll[propertyIndex].property[1].propertyOwner.phone;
+//             contactOwnerEmail[childIndex].innerHTML = "Email: " + data.workspacesAll[propertyIndex].property[1].propertyOwner.username;
 //         });
 //     });
 

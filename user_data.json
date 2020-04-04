@@ -24,124 +24,31 @@
   ],
   "currentUser": [
     {
-      "ID": 1,
-      "fname": "Stephen",
-      "lname": "Mackidd",
-      "phone": "4038297939",
-      "username": "stevemackidd@gmail.com",
-      "password": "1234",
-      "usertype": "owner"
+      "ID": 2,
+      "fname": "George",
+      "lname": "Hunt",
+      "phone": "403-555-1234",
+      "username": "georgehunt@gmail.com",
+      "password": "georgehunt",
+      "usertype": "coworker"
     }
   ],
   "workspacesAll": [
     {
-      "newID": 4
+      "newID": 15
     },
     {
-      "workspaceType": "conference",
+      "workspaceType": "Conference Room",
       "numberOfSeats": "10",
       "smoking": false,
-      "dateAvailable": "2020-03-30",
-      "leaseLength": "month",
-      "price": "$2500",
-      "property": [
-        0,
-        {
-          "propertyName": "The Bow",
-          "propertyAddress": "101, 500 1st St SW",
-          "propertyNeighborhood": "Beltline",
-          "propertySquareFoot": "2400",
-          "propertyParking": false,
-          "propertyTransit": true,
-          "propertyOwner": {
-            "ID": 1,
-            "fname": "Stephen",
-            "lname": "Mackidd",
-            "phone": "4038297939",
-            "username": "stevemackidd@gmail.com",
-            "password": "1234",
-            "usertype": "owner"
-          },
-          "propertyID": 0
-        }
-      ],
-      "Available": true,
-      "WorkSpaceID": 3
-    },
-    {
-      "workspaceType": "office",
-      "numberOfSeats": "1",
-      "smoking": false,
       "dateAvailable": "2020-04-01",
-      "leaseLength": "week",
-      "price": "$300",
+      "leaseLength": "month",
+      "price": "$1500",
       "property": [
         0,
         {
           "propertyName": "The Bow",
-          "propertyAddress": "101, 500 1st St SW",
-          "propertyNeighborhood": "Beltline",
-          "propertySquareFoot": "2400",
-          "propertyParking": false,
-          "propertyTransit": true,
-          "propertyOwner": {
-            "ID": 1,
-            "fname": "Stephen",
-            "lname": "Mackidd",
-            "phone": "4038297939",
-            "username": "stevemackidd@gmail.com",
-            "password": "1234",
-            "usertype": "owner"
-          },
-          "propertyID": 0
-        }
-      ],
-      "Available": true,
-      "WorkSpaceID": 4
-    },
-    {
-      "workspaceType": "cubicles",
-      "numberOfSeats": "4",
-      "smoking": false,
-      "dateAvailable": "2020-04-03",
-      "leaseLength": "day",
-      "price": "$150",
-      "property": [
-        0,
-        {
-          "propertyName": "The Bow",
-          "propertyAddress": "101, 500 1st St SW",
-          "propertyNeighborhood": "Beltline",
-          "propertySquareFoot": "2400",
-          "propertyParking": false,
-          "propertyTransit": true,
-          "propertyOwner": {
-            "ID": 1,
-            "fname": "Stephen",
-            "lname": "Mackidd",
-            "phone": "4038297939",
-            "username": "stevemackidd@gmail.com",
-            "password": "1234",
-            "usertype": "owner"
-          },
-          "propertyID": 0
-        }
-      ],
-      "Available": true,
-      "WorkSpaceID": 5
-    },
-    {
-      "workspaceType": "conference",
-      "numberOfSeats": "200",
-      "smoking": false,
-      "dateAvailable": "2020-04-13",
-      "leaseLength": "day",
-      "price": "$3500",
-      "property": [
-        1,
-        {
-          "propertyName": "Calgary Tower",
-          "propertyAddress": "333 9th Ave SW",
+          "propertyAddress": "1800, 500 1st St SW",
           "propertyNeighborhood": "Beltline",
           "propertySquareFoot": "6000",
           "propertyParking": false,
@@ -159,10 +66,103 @@
         }
       ],
       "Available": true,
-      "WorkSpaceID": 4
+      "WorkSpaceID": 12
+    },
+    {
+      "workspaceType": "Office",
+      "numberOfSeats": "1",
+      "smoking": false,
+      "dateAvailable": "2020-04-03",
+      "leaseLength": "week",
+      "price": "$300",
+      "property": [
+        0,
+        {
+          "propertyName": "The Bow",
+          "propertyAddress": "1800, 500 1st St SW",
+          "propertyNeighborhood": "Beltline",
+          "propertySquareFoot": "6000",
+          "propertyParking": false,
+          "propertyTransit": true,
+          "propertyOwner": {
+            "ID": 1,
+            "fname": "Stephen",
+            "lname": "Mackidd",
+            "phone": "4038297939",
+            "username": "stevemackidd@gmail.com",
+            "password": "1234",
+            "usertype": "owner"
+          },
+          "propertyID": 0
+        }
+      ],
+      "Available": true,
+      "WorkSpaceID": 13
+    },
+    {
+      "workspaceType": "Cubicles",
+      "numberOfSeats": "4",
+      "smoking": true,
+      "dateAvailable": "2020-04-10",
+      "leaseLength": "day",
+      "price": "$150",
+      "property": [
+        0,
+        {
+          "propertyName": "The Bow",
+          "propertyAddress": "1800, 500 1st St SW",
+          "propertyNeighborhood": "Beltline",
+          "propertySquareFoot": "6000",
+          "propertyParking": false,
+          "propertyTransit": true,
+          "propertyOwner": {
+            "ID": 1,
+            "fname": "Stephen",
+            "lname": "Mackidd",
+            "phone": "4038297939",
+            "username": "stevemackidd@gmail.com",
+            "password": "1234",
+            "usertype": "owner"
+          },
+          "propertyID": 0
+        }
+      ],
+      "Available": true,
+      "WorkSpaceID": 14
+    },
+    {
+      "workspaceType": "Conference Room",
+      "numberOfSeats": "200",
+      "smoking": false,
+      "dateAvailable": "2020-04-13",
+      "leaseLength": "day",
+      "price": "$2300",
+      "property": [
+        1,
+        {
+          "propertyName": "Calgary Tower",
+          "propertyAddress": "333, 9th Ave SW",
+          "propertyNeighborhood": "Beltline",
+          "propertySquareFoot": "3300",
+          "propertyParking": false,
+          "propertyTransit": true,
+          "propertyOwner": {
+            "ID": 1,
+            "fname": "Stephen",
+            "lname": "Mackidd",
+            "phone": "4038297939",
+            "username": "stevemackidd@gmail.com",
+            "password": "1234",
+            "usertype": "owner"
+          },
+          "propertyID": 1
+        }
+      ],
+      "Available": true,
+      "WorkSpaceID": 15
     }
   ],
   "rentedWorkspaces": [
-    {}
+    
   ]
 }
