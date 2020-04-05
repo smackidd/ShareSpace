@@ -17,6 +17,7 @@ fetch('http://localhost:3030/user_data')
         console.log("data: ", data);
         currentUser = data.currentUser[0];
         displayArray = [];
+        let propertyIndex = 0;
         console.log("currentUser.usertype: ", currentUser.usertype);
         function setPage(){
             // changes navbar display based on usertype
@@ -44,20 +45,213 @@ fetch('http://localhost:3030/user_data')
 
         // Sort the display based on an Ascending button push
         function sortArrayAsc(index){
-            console.log("Display before sort: ", displayArray)
-            // adapted from stackoverflow objs.sort((a,b) => (a.last_nom > b.last_nom) ? 1 : ((b.last_nom > a.last_nom) ? -1 : 0));
-            displayArray.sort(function (a,b) { 
-                var x = a.workspaceType.toLowerCase();
-                var y = b.workspaceType.toLowerCase();
-                if (x < y) return -1;
-                if (x > y) return 1;
-                return 0;    
-            });
+            console.log("Display before sort: ", displayArray);
+            // switch/case based on asc button index
+            switch (index) {
+                case 0:
+                    displayArray.sort(function (a,b) { 
+                        var x = a.property[1].propertyName.toLowerCase();
+                        var y = b.property[1].propertyName.toLowerCase();
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    break;
+                case 1: 
+                    displayArray.sort(function (a,b) { 
+                        var x = a.property[1].propertyAddress.toLowerCase();
+                        var y = b.property[1].propertyAddress.toLowerCase();
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    break;
+                case 2: 
+                    displayArray.sort(function (a,b) { 
+                        var x = a.property[1].propertyNeighborhood.toLowerCase();
+                        var y = b.property[1].propertyNeighborhood.toLowerCase();
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    break;
+                case 3: 
+                    displayArray.sort(function (a,b) { 
+                        var x = parseInt(a.property[1].propertySquareFoot);
+                        var y = parseInt(b.property[1].propertySquareFoot);
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    break;
+                case 4: 
+                    displayArray.sort(function (a,b) { 
+                        var x = a.workspaceType.toLowerCase();
+                        var y = b.workspaceType.toLowerCase();
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    break;
+                case 5: 
+                    displayArray.sort(function (a,b) { 
+                        var x = parseInt(a.dateAvailable.replace(/[-,]+/g, ""));
+                        var y = parseInt(b.dateAvailable.replace(/[-,]+/g, ""));
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    break;
+                case 6: 
+                    displayArray.sort(function (a,b) { 
+                        var x = parseInt(a.price.replace(/[$,]+/g, ""));
+                        var y = parseInt(b.price.replace(/[$,]+/g, ""));
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    break;
+                case 7: 
+                    displayArray.sort(function (a,b) {
+                        function leaseConvert(value){
+                            switch (value){
+                                case "day":
+                                    return 1;
+                                case "week":
+                                    return 7;
+                                case "month":
+                                    return 30;
+                            }
+                        } 
+                        var x = leaseConvert(a.leaseLength.toLowerCase());
+                        var y = leaseConvert(b.leaseLength.toLowerCase());
+                        
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    break;
+                case 8: 
+                    displayArray.sort(function (a,b) { 
+                        var x = parseInt(a.numberOfSeats);
+                        var y = parseInt(b.numberOfSeats);
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    break;
+            };
+            
+            
             console.log("Display after sort: ", displayArray)
         };
 
         function sortArrayDesc(index){
-            displayArray.workspaceType.reverse();
+            console.log("Display before sort: ", displayArray);
+            switch (index) {
+                case 0:
+                    displayArray.sort(function (a,b) { 
+                        var x = a.property[1].propertyName.toLowerCase();
+                        var y = b.property[1].propertyName.toLowerCase();
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    displayArray.reverse();
+                    break;
+                case 1: 
+                    displayArray.sort(function (a,b) { 
+                        var x = a.property[1].propertyAddress.toLowerCase();
+                        var y = b.property[1].propertyAddress.toLowerCase();
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    displayArray.reverse();
+                    break;
+                case 2: 
+                    displayArray.sort(function (a,b) { 
+                        var x = a.property[1].propertyNeighborhood.toLowerCase();
+                        var y = b.property[1].propertyNeighborhood.toLowerCase();
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    displayArray.reverse();
+                    break;
+                case 3: 
+                    displayArray.sort(function (a,b) { 
+                        var x = parseInt(a.property[1].propertySquareFoot);
+                        var y = parseInt(b.property[1].propertySquareFoot);
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    displayArray.reverse();
+                    break;
+                case 4: 
+                    displayArray.sort(function (a,b) { 
+                        var x = a.workspaceType.toLowerCase();
+                        var y = b.workspaceType.toLowerCase();
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    displayArray.reverse();
+                    break;
+                case 5: 
+                    displayArray.sort(function (a,b) { 
+                        var x = parseInt(a.dateAvailable.replace(/[-,]+/g, ""));
+                        var y = parseInt(b.dateAvailable.replace(/[-,]+/g, ""));
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    displayArray.reverse();
+                    break;
+                case 6: 
+                    displayArray.sort(function (a,b) { 
+                        var x = parseInt(a.price.replace(/[$,]+/g, ""));
+                        var y = parseInt(b.price.replace(/[$,]+/g, ""));
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    displayArray.reverse();
+                    break;
+                case 7: 
+                    displayArray.sort(function (a,b) {
+                        function leaseConvert(value){
+                            switch (value){
+                                case "day":
+                                    return 1;
+                                case "week":
+                                    return 7;
+                                case "month":
+                                    return 30;
+                            }
+                        } 
+                        var x = leaseConvert(a.leaseLength.toLowerCase());
+                        var y = leaseConvert(b.leaseLength.toLowerCase());
+                        
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    displayArray.reverse();
+                    break;
+                case 8: 
+                    displayArray.sort(function (a,b) { 
+                        var x = parseInt(a.numberOfSeats);
+                        var y = parseInt(b.numberOfSeats);
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;    
+                    });
+                    displayArray.reverse();
+                    break;
+                }
+            console.log("Display after sort: ", displayArray);
         };
         /////
         // Filter and Sort buttons
@@ -77,20 +271,20 @@ fetch('http://localhost:3030/user_data')
             let parking, transit;
             let workspaceIndex = [];
             //fix array iterations
-            for (let i = 1; i < data.workspacesAll.length; i++) {
+            for (let i = 0; i < displayArray.length; i++) {
                   
             
-                if (data.workspacesAll[i].property[1].propertyParking) {
+                if (displayArray[i].property[1].propertyParking) {
                     parking = "Yes";
                 } else {
                     parking = "No";
                 }
-                if (data.workspacesAll[i].property[1].propertyTransit) {
+                if (displayArray[i].property[1].propertyTransit) {
                     transit = "Yes";
                 } else {
                     transit = "No";
                 }
-                if (data.workspacesAll[i].smoking){
+                if (displayArray[i].smoking){
                     smoking = "Yes";
                 } else {
                     smoking = "No";
@@ -101,11 +295,11 @@ fetch('http://localhost:3030/user_data')
                     '<div id="listings-workspace">' +
                         '<div id="photo-listings"><i class="fa fa-camera"></i></div>' +
                         '<div id="property-info">' +
-                            '<h2 id="property-title">' + data.workspacesAll[i].property[1].propertyName + ' - ' + data.workspacesAll[i].workspaceType + '</h2>' +
+                            '<h2 id="property-title">' + displayArray[i].property[1].propertyName + ' - ' + displayArray[i].workspaceType + '</h2>' +
                             '<div id="property-address-listings">' +
-                                '<p>' + data.workspacesAll[i].property[1].propertyAddress + '</p>' +
-                                '<p>' + data.workspacesAll[i].property[1].propertyNeighborhood + '</p>' +
-                                '<p>'+ data.workspacesAll[i].property[1].propertySquareFoot + ' SqFT</p>' +
+                                '<p>' + displayArray[i].property[1].propertyAddress + '</p>' +
+                                '<p>' + displayArray[i].property[1].propertyNeighborhood + '</p>' +
+                                '<p>'+ displayArray[i].property[1].propertySquareFoot + ' SqFT</p>' +
                                 '<div id="parking-transit">' +
                                     '<p>Parking: ' + parking + '</p>' +
                                     '<p>Transit: ' + transit + '</p>' +
@@ -114,10 +308,10 @@ fetch('http://localhost:3030/user_data')
                         '</div>' +
                         '<div id="workspace-container-listings">' +
                             '<div id="workspace-info">' +
-                                '<p>Owner: ' + data.workspacesAll[i].property[1].propertyOwner.fname + " " + data.workspacesAll[i].property[1].propertyOwner.lname + '</p>' +
-                                '<p>Seats: ' + data.workspacesAll[i].numberOfSeats + '</p>' +
-                                '<p>Available: ' + data.workspacesAll[i].dateAvailable + '</p>' +
-                                '<p>Price: ' + data.workspacesAll[i].price + '/' + data.workspacesAll[i].leaseLength + '</p>' +
+                                '<p>Owner: ' + displayArray[i].property[1].propertyOwner.fname + " " + displayArray[i].property[1].propertyOwner.lname + '</p>' +
+                                '<p>Seats: ' + displayArray[i].numberOfSeats + '</p>' +
+                                '<p>Available: ' + displayArray[i].dateAvailable + '</p>' +
+                                '<p>Price: ' + displayArray[i].price + '/' + displayArray[i].leaseLength + '</p>' +
                                 '<p>Smoking: ' + smoking + '</p>    ' +
                             '</div>' +
                         '</div>' +
@@ -246,11 +440,11 @@ fetch('http://localhost:3030/user_data')
                     '<div id="listings-workspace">' +
                         '<div id="photo-listings"><i class="fa fa-camera"></i></div>' +
                         '<div id="property-info">' +
-                            '<h2 id="property-title">' + data.workspacesAll[i].property[1].propertyName + ' - ' + data.workspacesAll[i].workspaceType + '</h2>' +
+                            '<h2 id="property-title">' + displayArray[i].property[1].propertyName + ' - ' + displayArray[i].workspaceType + '</h2>' +
                             '<div id="property-address-listings">' +
-                                '<p>' + data.workspacesAll[i].property[1].propertyAddress + '</p>' +
-                                '<p>' + data.workspacesAll[i].property[1].propertyNeighborhood + '</p>' +
-                                '<p>'+ data.workspacesAll[i].property[1].propertySquareFoot + ' SqFT</p>' +
+                                '<p>' + displayArray[i].property[1].propertyAddress + '</p>' +
+                                '<p>' + displayArray[i].property[1].propertyNeighborhood + '</p>' +
+                                '<p>'+ displayArray[i].property[1].propertySquareFoot + ' SqFT</p>' +
                                 '<div id="parking-transit">' +
                                     '<p>Parking: ' + parking + '</p>' +
                                     '<p>Transit: ' + transit + '</p>' +
@@ -259,10 +453,10 @@ fetch('http://localhost:3030/user_data')
                         '</div>' +
                         '<div id="workspace-container-listings">' +
                             '<div id="workspace-info">' +
-                                '<p>Owner: ' + data.workspacesAll[i].property[1].propertyOwner.fname + " " + data.workspacesAll[i].property[1].propertyOwner.lname + '</p>' +
-                                '<p>Seats: ' + data.workspacesAll[i].numberOfSeats + '</p>' +
-                                '<p>Available: ' + data.workspacesAll[i].dateAvailable + '</p>' +
-                                '<p>Price: ' + data.workspacesAll[i].price + '/' + data.workspacesAll[i].leaseLength + '</p>' +
+                                '<p>Owner: ' + displayArray[i].property[1].propertyOwner.fname + " " + displayArray[i].property[1].propertyOwner.lname + '</p>' +
+                                '<p>Seats: ' + displayArray[i].numberOfSeats + '</p>' +
+                                '<p>Available: ' + displayArray[i].dateAvailable + '</p>' +
+                                '<p>Price: ' + displayArray[i].price + '/' + displayArray[i].leaseLength + '</p>' +
                                 '<p>Smoking: ' + smoking + '</p>    ' +
                             '</div>' +
                         '</div>' +
@@ -278,7 +472,7 @@ fetch('http://localhost:3030/user_data')
                         '</div>' +
                         '<div id="contact-owner">' +
                             '<div class="listings-buttons-container">' +
-                                '<button type="button" id="btn-contact-owner">Contact Info</button>' +
+                                '<button type="button" class="btn-contact-owner">Contact Info</button>' +
                             '</div>' +
                         '</div>' +
                         '<div id="rent-workspace">' +
@@ -297,7 +491,7 @@ fetch('http://localhost:3030/user_data')
                 '</div>';
                 
                 // creates an array help match the workspace child index to the data.workspacesAll array index
-                let temp = {propertyIndex: i};
+                let temp = {propertyIndex: displayArray[i].WorkSpaceID};
                 console.log("hello");
                 console.log("currentUser.usertype: ", currentUser.usertype);
                 // put all workspace box html into the DOM for each array element in data.workspacesAll
@@ -306,7 +500,7 @@ fetch('http://localhost:3030/user_data')
                     $('#put-workspaces-here').after(elemOwner);
                 } else {
                     // only show unrented workspaces
-                    if (data.workspacesAll[i].Available){
+                    if (displayArray[i].Available){
                         workspaceIndex.push(temp);
                         $('#put-workspaces-here').after(elemCoworker);
                     }
@@ -320,13 +514,16 @@ fetch('http://localhost:3030/user_data')
             
         }
         //console.log("hello");
-        const workspaceIndex = workspaceDisplay();
-        //console.log("workspaceIndex: ", workspaceIndex);
+        
 
         // assigns a workspace to the coworkers rent array
         function rentWorkspace(childIndex) {
             index = (childIndex + 1 - workspaceIndex.length) * -1;
-            const propertyIndex = workspaceIndex[index].propertyIndex;
+            data.workspacesAll.forEach((element, windex) => {
+                if (workspaceIndex[index].propertyIndex == element.WorkSpaceID) {
+                    propertyIndex = windex;
+                }
+            });
             //const workIndex = workspaceIndex[index].workIndex; 
             data.workspacesAll[propertyIndex].Available = false;
             localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll)); 
@@ -372,7 +569,7 @@ fetch('http://localhost:3030/user_data')
             const workspaceSureContainer = document.querySelectorAll('.are-you-sure-workspace');
             const removeWorkspaceCancel = document.querySelectorAll('#btn-sure-cancel-workspace');
             const removeWorkspaceRemove = document.querySelectorAll('#btn-sure-remove-workspace');
-            const contactOwnerButton = document.querySelectorAll('#btn-contact-owner');
+            const contactOwnerButton = document.querySelectorAll('.btn-contact-owner');
             const contactOwnerInfo = document.querySelectorAll('#owner-info-listings');
             const contactOwnerName = document.querySelectorAll('#owner-name-listings');
             const contactOwnerPhone = document.querySelectorAll('#owner-phone-listings');
@@ -381,6 +578,7 @@ fetch('http://localhost:3030/user_data')
             const rentWorkspaceButton = document.querySelectorAll('#btn-rent-workspace');
             const ascSortButton = document.querySelectorAll('.btn-ascending');
             const descSortButton = document.querySelectorAll('.btn-descending');
+            const workspaceBox = document.querySelectorAll('#workspace-box');
         
             //console.log(editFormContainer);
         
@@ -404,7 +602,11 @@ fetch('http://localhost:3030/user_data')
                     // the element child indexes are populated in the opposite order of the workspaceAll indexes
                     // so we need to recitfy the problem with the formula below.
                     index = (childIndex + 1 - workspaceIndex.length) * -1;
-                    const propertyIndex = workspaceIndex[index].propertyIndex;
+                    data.workspacesAll.forEach((element, windex) => {
+                        if (workspaceIndex[index].propertyIndex == element.WorkSpaceID) {
+                            propertyIndex = windex;
+                        }
+                    });
                     //const workIndex = workspaceIndex[index].workIndex;
                     
                     // console.log(propertyName[childIndex].value);
@@ -459,7 +661,11 @@ fetch('http://localhost:3030/user_data')
                     // the element child indexes are populated in the opposite order of the workspaceAll indexes
                     // so we need to recitfy the problem with the formula below.
                     index = (childIndex + 1 - workspaceIndex.length) * -1;
-                    const propertyIndex = workspaceIndex[index].propertyIndex;
+                    data.workspacesAll.forEach((element, windex) => {
+                        if (workspaceIndex[index].propertyIndex == element.WorkSpaceID) {
+                            propertyIndex = windex;
+                        }
+                    });
 
                     data.workspacesAll.forEach((workspace, index) => {
                         if (index > 0) {
@@ -493,7 +699,11 @@ fetch('http://localhost:3030/user_data')
             editWorkspaceSubmit.forEach((element, childIndex) => {
                 element.addEventListener('click', ()=>{
                     index = (childIndex + 1 - workspaceIndex.length) * -1;
-                    const propertyIndex = workspaceIndex[index].propertyIndex;
+                    data.workspacesAll.forEach((element, windex) => {
+                        if (workspaceIndex[index].propertyIndex == element.WorkSpaceID) {
+                            propertyIndex = windex;
+                        }
+                    });
                     // console.log("propertyIndex", propertyIndex);
                     // console.log("workspaceType[childIndex].value: ", workspaceType[childIndex].value);
                     // console.log("data.workspacesAll[propertyIndex].workspaceType: ", data.workspacesAll[propertyIndex].workspaceType);
@@ -535,7 +745,11 @@ fetch('http://localhost:3030/user_data')
                     // the element child indexes are populated in the opposite order of the workspaceAll indexes
                     // so we need to recitfy the problem with the formula below.
                     index = (childIndex + 1 - workspaceIndex.length) * -1;
-                    const propertyIndex = workspaceIndex[index].propertyIndex;
+                    data.workspacesAll.forEach((element, windex) => {
+                        if (workspaceIndex[index].propertyIndex == element.WorkSpaceID) {
+                            propertyIndex = windex;
+                        }
+                    });
                     //const workIndex = workspaceIndex[index].workIndex;
                     console.log("propertyIndex: ", propertyIndex);
                     //console.log("workIndex: ", workIndex);
@@ -552,10 +766,17 @@ fetch('http://localhost:3030/user_data')
         
             contactOwnerButton.forEach((element, childIndex) => {
                 element.addEventListener('click', () => {
+                    console.log("hello");
                     contactOwnerInfo[childIndex].style.display = "flex";
-        
+                    propertyIndex = 0;
                     var index = (childIndex + 1 - workspaceIndex.length) * -1;
-                    const propertyIndex = workspaceIndex[index].propertyIndex;
+                    //match the id in the display index to a workspace index
+                    data.workspacesAll.forEach((element, windex) => {
+                        if (workspaceIndex[index].propertyIndex == element.WorkSpaceID) {
+                            propertyIndex = windex;
+                        }
+                    });
+                    //propertyIndex = workspaceIndex[index].propertyIndex;
                     //const workIndex = workspaceIndex[index].workIndex;
                     contactOwnerName[childIndex].innerHTML = "Name: " + data.workspacesAll[propertyIndex].property[1].propertyOwner.fname + " " + data.workspacesAll[propertyIndex].property[1].propertyOwner.lname;
                     contactOwnerPhone[childIndex].innerHTML = "Phone: " + data.workspacesAll[propertyIndex].property[1].propertyOwner.phone;
@@ -583,11 +804,32 @@ fetch('http://localhost:3030/user_data')
             ascSortButton.forEach((button, childIndex) => {
                 button.addEventListener('click', ()=> {
                     sortArrayAsc(childIndex);
+                    // removes current display before displaying new sorted display
+                    workspaceBox.forEach((element) => {
+                        $('#workspace-box').remove();
+                    });
+                    workspaceIndex = workspaceDisplay();
+                    console.log("workspaceIndex: ", workspaceIndex);
+                    buttons();
+                });
+            });
+
+            descSortButton.forEach((button, childIndex) => {
+                button.addEventListener('click', ()=> {
+                    sortArrayDesc(childIndex);
+                    // removes current display before displaying new sorted display
+                    workspaceBox.forEach((element) => {
+                        $('#workspace-box').remove();
+                    });
+                    workspaceIndex = workspaceDisplay();
+                    console.log("workspaceIndex: ", workspaceIndex);
+                    buttons();
                 });
             });
         
-        }
-        
+        };
+        var workspaceIndex = workspaceDisplay();
+        console.log("workspaceIndex: ", workspaceIndex);
         buttons();
     });
 

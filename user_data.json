@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "newID": 2
+      "newID": 3
     },
     {
       "ID": 1,
@@ -20,6 +20,15 @@
       "username": "georgehunt@gmail.com",
       "password": "georgehunt",
       "usertype": "coworker"
+    },
+    {
+      "ID": 3,
+      "fname": "Lisa",
+      "lname": "Newperson",
+      "phone": "587-555-6666",
+      "username": "lisanewperson@gmail.com",
+      "password": "lisanewperson",
+      "usertype": "owner"
     }
   ],
   "currentUser": [
@@ -35,24 +44,24 @@
   ],
   "workspacesAll": [
     {
-      "newID": 15
+      "newID": 18
     },
     {
-      "workspaceType": "Conference Room",
-      "numberOfSeats": "10",
+      "workspaceType": "Conference Room ",
+      "numberOfSeats": "12",
       "smoking": false,
-      "dateAvailable": "2020-04-01",
+      "dateAvailable": "2020-04-22",
       "leaseLength": "month",
-      "price": "$1500",
+      "price": "$1799",
       "property": [
         0,
         {
           "propertyName": "The Bow",
-          "propertyAddress": "1800, 500 1st St SW",
+          "propertyAddress": "1500, 500 1st St SW",
           "propertyNeighborhood": "Beltline",
-          "propertySquareFoot": "6000",
+          "propertySquareFoot": "3333",
           "propertyParking": false,
-          "propertyTransit": true,
+          "propertyTransit": false,
           "propertyOwner": {
             "ID": 1,
             "fname": "Stephen",
@@ -79,11 +88,11 @@
         0,
         {
           "propertyName": "The Bow",
-          "propertyAddress": "1800, 500 1st St SW",
+          "propertyAddress": "1500, 500 1st St SW",
           "propertyNeighborhood": "Beltline",
-          "propertySquareFoot": "6000",
+          "propertySquareFoot": "3333",
           "propertyParking": false,
-          "propertyTransit": true,
+          "propertyTransit": false,
           "propertyOwner": {
             "ID": 1,
             "fname": "Stephen",
@@ -110,11 +119,11 @@
         0,
         {
           "propertyName": "The Bow",
-          "propertyAddress": "1800, 500 1st St SW",
+          "propertyAddress": "1500, 500 1st St SW",
           "propertyNeighborhood": "Beltline",
-          "propertySquareFoot": "6000",
+          "propertySquareFoot": "3333",
           "propertyParking": false,
-          "propertyTransit": true,
+          "propertyTransit": false,
           "propertyOwner": {
             "ID": 1,
             "fname": "Stephen",
@@ -160,9 +169,100 @@
       ],
       "Available": true,
       "WorkSpaceID": 15
+    },
+    {
+      "workspaceType": "Auditorium",
+      "numberOfSeats": "220",
+      "smoking": false,
+      "dateAvailable": "2020-07-01",
+      "leaseLength": "week",
+      "price": "$8700",
+      "property": [
+        2,
+        {
+          "propertyName": "Bow Valley College",
+          "propertyAddress": "N400, 123 5th Ave SE",
+          "propertyNeighborhood": "East Village",
+          "propertySquareFoot": "5400",
+          "propertyParking": true,
+          "propertyTransit": true,
+          "propertyOwner": {
+            "ID": 3,
+            "fname": "Lisa",
+            "lname": "Newperson",
+            "phone": "587-555-6666",
+            "username": "lisanewperson@gmail.com",
+            "password": "lisanewperson",
+            "usertype": "owner"
+          },
+          "propertyID": 2
+        }
+      ],
+      "Available": true,
+      "WorkSpaceID": 16
+    },
+    {
+      "workspaceType": "Classroom",
+      "numberOfSeats": "30",
+      "smoking": false,
+      "dateAvailable": "2020-05-04",
+      "leaseLength": "month",
+      "price": "$1800",
+      "property": [
+        2,
+        {
+          "propertyName": "Bow Valley College",
+          "propertyAddress": "N400, 123 5th Ave SE",
+          "propertyNeighborhood": "East Village",
+          "propertySquareFoot": "5400",
+          "propertyParking": true,
+          "propertyTransit": true,
+          "propertyOwner": {
+            "ID": 3,
+            "fname": "Lisa",
+            "lname": "Newperson",
+            "phone": "587-555-6666",
+            "username": "lisanewperson@gmail.com",
+            "password": "lisanewperson",
+            "usertype": "owner"
+          },
+          "propertyID": 2
+        }
+      ],
+      "Available": true,
+      "WorkSpaceID": 17
+    },
+    {
+      "workspaceType": "Study Room",
+      "numberOfSeats": "6",
+      "smoking": false,
+      "dateAvailable": "2020-05-04",
+      "leaseLength": "day",
+      "price": "$175",
+      "property": [
+        2,
+        {
+          "propertyName": "Bow Valley College",
+          "propertyAddress": "N400, 123 5th Ave SE",
+          "propertyNeighborhood": "East Village",
+          "propertySquareFoot": "5400",
+          "propertyParking": true,
+          "propertyTransit": true,
+          "propertyOwner": {
+            "ID": 3,
+            "fname": "Lisa",
+            "lname": "Newperson",
+            "phone": "587-555-6666",
+            "username": "lisanewperson@gmail.com",
+            "password": "lisanewperson",
+            "usertype": "owner"
+          },
+          "propertyID": 2
+        }
+      ],
+      "Available": true,
+      "WorkSpaceID": 18
     }
   ],
-  "rentedWorkspaces": [
-    
-  ]
+  "rentedWorkspaces": []
 }
