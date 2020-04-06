@@ -1,13 +1,14 @@
 /* Functionality Fixes
+    - Fix filtered rental bug
+    - display owner only when user is owner
     
     
-    - pass values in to the forms for Edit Property and Edit Workspace
   
     - Implement ratings display
     
      
-    - Style Search/Filter Bar
-    - Implement Search/Filter functionality, including Owner-only button
+    
+    
     - display photos
 */
 let currentUser = {};
@@ -42,7 +43,310 @@ fetch('http://localhost:3030/user_data')
         };
         setPage();
 
+        // Filter Drop Down boxes
+        function filters() {
+            workspaceBox = document.querySelectorAll('#workspace-box'); 
+            const propertyNameFilter = document.getElementById('property-name-filter');
+            const propertyAddressFilter = document.getElementById('property-address-filter');
+            const propertyNeighborhoodFilter = document.getElementById('property-neighborhood-filter');
+            const propertySqftFilter = document.getElementById('property-sqft-filter');
+            const workspaceTypeFilter = document.getElementById('workspace-type-filter');
+            const workspaceDateFilter = document.getElementById('workspace-date-available-filter');
+            const workspacePriceFilter = document.getElementById('workspace-price-filter');
+            const workspaceLeaseFilter = document.getElementById('workspace-lease-filter');
+            const workspaceSeatsFilter = document.getElementById('workspace-seats-filter');
+            const propertyGarageFilter = document.getElementById('garage');
+            const propertyTransitFilter = document.getElementById('transit');
+            const workspaceSmokingFilter = document.getElementById('smoking');
 
+
+            // fill in values for the drop down boxes
+            let dropDownValues = [];
+            data.workspacesAll.forEach((workspaces, index) => {
+                if (index > 0){
+                    //console.log("filter workspace: ", workspace);
+                    let notUnique = dropDownValues.includes(workspaces.property[1].propertyName);
+                    if (!notUnique){
+                        dropDownValues.push(workspaces.property[1].propertyName);
+                        propertyNameFilter.innerHTML += `<option value="${workspaces.property[1].propertyName}">${workspaces.property[1].propertyName}</option>`;
+                    }
+                }
+            });
+            dropDownValues = [];
+            data.workspacesAll.forEach((workspaces, index) => {
+                if (index > 0){
+                    //console.log("filter workspace: ", workspace);
+                    notUnique = dropDownValues.includes(workspaces.property[1].propertyAddress);
+                    if (!notUnique){
+                        dropDownValues.push(workspaces.property[1].propertyAddress);
+                        propertyAddressFilter.innerHTML += `<option value="${workspaces.property[1].propertyAddress}">${workspaces.property[1].propertyAddress}</option>`;
+                    }
+                }
+            });
+            dropDownValues = [];
+            data.workspacesAll.forEach((workspaces, index) => {
+                if (index > 0){
+                    //console.log("filter workspace: ", workspace);
+                    notUnique = dropDownValues.includes(workspaces.property[1].propertyNeighborhood);
+                    if (!notUnique){
+                        dropDownValues.push(workspaces.property[1].propertyNeighborhood);
+                        propertyNeighborhoodFilter.innerHTML += `<option value="${workspaces.property[1].propertyNeighborhood}">${workspaces.property[1].propertyNeighborhood}</option>`;
+                    }
+                }
+            });
+            dropDownValues = [];
+            data.workspacesAll.forEach((workspaces, index) => {
+                if (index > 0){
+                    //console.log("filter workspace: ", workspace);
+                    notUnique = dropDownValues.includes(workspaces.property[1].propertySquareFoot);
+                    if (!notUnique){
+                        dropDownValues.push(workspaces.property[1].propertySquareFoot);
+                        propertySqftFilter.innerHTML += `<option value="${workspaces.property[1].propertySquareFoot}">${workspaces.property[1].propertySquareFoot}</option>`;
+                    }
+                }
+            });
+            dropDownValues = [];
+            data.workspacesAll.forEach((workspaces, index) => {
+                if (index > 0){
+                    //console.log("filter workspace: ", workspace);
+                    notUnique = dropDownValues.includes(workspaces.workspaceType);
+                    if (!notUnique){
+                        dropDownValues.push(workspaces.workspaceType);
+                        workspaceTypeFilter.innerHTML += `<option value="${workspaces.workspaceType}">${workspaces.workspaceType}</option>`;
+                    }
+                }
+            });
+            dropDownValues = [];
+            data.workspacesAll.forEach((workspaces, index) => {
+                if (index > 0){
+                    //console.log("filter workspace: ", workspace);
+                    notUnique = dropDownValues.includes(workspaces.workspaceType);
+                    if (!notUnique){
+                        dropDownValues.push(workspaces.workspaceType);
+                        workspaceDateFilter.innerHTML += `<option value="${workspaces.dateAvailable}">${workspaces.dateAvailable}</option>`;
+                    }
+                }
+            });
+
+
+            // once a drop down box has been selected, filter the display to match the selection
+            propertyNameFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return element.property[1].propertyName == propertyNameFilter.value;
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            propertyAddressFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return element.property[1].propertyAddress == propertyAddressFilter.value;
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            propertyNeighborhoodFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return element.property[1].propertyNeighborhood == propertyNeighborhoodFilter.value;
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            propertySqftFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return element.property[1].propertySquareFoot == propertySqftFilter.value;
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            workspaceTypeFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return element.workspaceType == workspaceTypeFilter.value;
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            workspaceDateFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return parseInt(element.dateAvailable.replace(/[-,]+/g, "")) > parseInt(workspaceDateFilter.value.replace(/[-,]+/g, ""));
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            workspacePriceFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) {
+                        if (workspacePriceFilter.value == "500") return parseInt(element.price.replace(/[$,]+/g, "")) <= 500;
+                        else if (workspacePriceFilter.value == "501-1000") return parseInt(element.price.replace(/[$,]+/g, "")) > 500 && parseInt(element.price.replace(/[$,]+/g, "")) <= 1000;
+                        else if (workspacePriceFilter.value == "1001-2000") return parseInt(element.price.replace(/[$,]+/g, "")) > 1000 && parseInt(element.price.replace(/[$,]+/g, "")) <= 2000;
+                        else if (workspacePriceFilter.value == "2001") return parseInt(element.price.replace(/[$,]+/g, "")) > 2000;
+                    }
+                    
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            workspaceLeaseFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return element.leaseLength == workspaceLeaseFilter.value;
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            workspaceSeatsFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) {
+                        if (workspaceSeatsFilter.value == "1") return parseInt(element.numberOfSeats) <= 1;
+                        else if (workspaceSeatsFilter.value == "2-20") return parseInt(element.numberOfSeats) > 1 && parseInt(element.numberOfSeats) <= 20;
+                        else if (workspaceSeatsFilter.value == "21-250") return parseInt(element.numberOfSeats) > 20 && parseInt(element.numberOfSeats) <= 250;
+                        else if (workspaceSeatsFilter.value == "251") return parseInt(element.numberOfSeats) > 250;
+                    }
+                    
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            propertyGarageFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return element.property[1].propertyParking == true;
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            propertyTransitFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return element.property[1].propertyTransit == true;
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+            workspaceSmokingFilter.addEventListener('change', () => {
+                console.log("displayArray before: ", displayArray);
+                //console.log("propertyNameFilter.value: ", propertyNameFilter.value);
+                newDisplay = data.workspacesAll.filter((element, index) => {
+                    //console.log("element: ", element);
+                    if (index > 0) return element.smoking == true;
+                });
+                
+                displayArray = newDisplay;
+                console.log("workspaceBox: ", workspaceBox);
+                workspaceBox.forEach(() => {
+                    
+                    $('#workspace-box').remove();
+                });
+                console.log("displayArray after: ", displayArray);
+                workspaceIndex = workspaceDisplay();
+            });
+        }
+        
         // Sort the display based on an Ascending button push
         function sortArrayAsc(index){
             console.log("Display before sort: ", displayArray);
@@ -830,7 +1134,9 @@ fetch('http://localhost:3030/user_data')
         };
         var workspaceIndex = workspaceDisplay();
         console.log("workspaceIndex: ", workspaceIndex);
+        filters();
         buttons();
+        
     });
 
 
