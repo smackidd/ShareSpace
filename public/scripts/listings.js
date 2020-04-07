@@ -145,6 +145,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             propertyAddressFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -162,6 +163,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             propertyNeighborhoodFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -179,6 +181,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             propertySqftFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -196,6 +199,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             workspaceTypeFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -213,6 +217,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             workspaceDateFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -230,6 +235,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             workspacePriceFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -253,6 +259,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             workspaceLeaseFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -270,6 +277,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             workspaceSeatsFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -293,6 +301,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             propertyGarageFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -310,6 +319,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             propertyTransitFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -327,6 +337,7 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
             workspaceSmokingFilter.addEventListener('change', () => {
                 console.log("displayArray before: ", displayArray);
@@ -344,7 +355,9 @@ fetch('http://localhost:3030/user_data')
                 });
                 console.log("displayArray after: ", displayArray);
                 workspaceIndex = workspaceDisplay();
+                buttons();
             });
+            
         }
         
         // Sort the display based on an Ascending button push
@@ -822,15 +835,20 @@ fetch('http://localhost:3030/user_data')
 
         // assigns a workspace to the coworkers rent array
         function rentWorkspace(childIndex) {
+            console.log("workspaceIndex.length: ", workspaceIndex.length);
+            console.log("childIndex", childIndex);
             index = (childIndex + 1 - workspaceIndex.length) * -1;
             data.workspacesAll.forEach((element, windex) => {
+                console.log("workspaceIndex[index].propertyIndex", workspaceIndex[index].propertyIndex);
+                console.log("element.WorkSpaceID", element.WorkSpaceID);
+                console.log("windex", windex);
                 if (workspaceIndex[index].propertyIndex == element.WorkSpaceID) {
                     propertyIndex = windex;
                 }
             });
             //const workIndex = workspaceIndex[index].workIndex; 
             data.workspacesAll[propertyIndex].Available = false;
-            localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll)); 
+            //localStorage.setItem('workspaces', JSON.stringify(data.workspacesAll)); 
             
             const user = currentUser.ID;
             const workspace = data.workspacesAll[propertyIndex].WorkSpaceID;
@@ -1133,7 +1151,7 @@ fetch('http://localhost:3030/user_data')
         
         };
         var workspaceIndex = workspaceDisplay();
-        console.log("workspaceIndex: ", workspaceIndex);
+        //console.log("workspaceIndex: ", workspaceIndex);
         filters();
         buttons();
         
